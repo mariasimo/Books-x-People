@@ -1,6 +1,16 @@
 require( 'dotenv' ).config()
 const express = require('express')
 const schema = require('./schema/schema')
+const mongoose = require('mongoose')
+
+//Connect to db 
+mongoose.connect(process.env.DBSTR,
+{ useUnifiedTopology: true,
+    useNewUrlParser: true 
+})
+mongoose.connection.once('open', () => {
+    console.log('Connected to database')
+})
 
 // Express-graphQL es un modulo permite a express entender graphql
 // Provee un método sencillo de montar un servidor 
