@@ -1,7 +1,8 @@
 require( 'dotenv' ).config()
-const express = require('express')
-const schema = require('./schema/schema')
-const mongoose = require('mongoose')
+const express   = require('express')
+const schema    = require('./schema/schema')
+const mongoose  = require('mongoose')
+const cors      = require('cors');
 
 //Connect to db 
 mongoose.connect(process.env.DBSTR,
@@ -23,6 +24,9 @@ mongoose.connection.once('open', () => {
 const graphqlHTTP = require('express-graphql')
 
 const app = express();
+
+app.use(cors());
+
 
 // Cuando alguien haga una petición a esta ruta, cedemos el control del request a express graphql
 // Para ello, usamos la fn graphqlHTTP(). Este middleware debe tener como parámetro un schema, que 
