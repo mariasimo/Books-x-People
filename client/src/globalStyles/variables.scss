@@ -1,0 +1,39 @@
+$yellow:#FFF4CC;
+$green: #FFCCF4;
+$pink: #D9FFCC;
+$blue: #BDDFFF;
+$black: #000000;
+
+$main_color: $yellow;
+$bg_color: $black;
+
+//fonts family
+$ff_title: 'Anton', sans-serif;
+$ff_body: 'Overpass Mono', sans-serif;
+
+//font sizes
+$f1: 6rem;
+$f2: 2.4rem;
+$f3: 1.5rem;
+$f4: 1rem;
+$f5: .875rem;
+
+//Line height
+$lh-heading: 1.015;
+$lh-body: 1.5;
+
+// Media queries
+$bp_x-small: 400px;
+$bp_small: 600px;
+$bp_medium: 800px;
+$bp_large: 1000px;
+$bp_x-large: 1200px;
+
+//measure
+$m1: 8rem;
+$m2: 6.4rem;
+$m3: 3.2rem;
+$m4: 1.6rem;
+$m5: .8rem;
+$m6: .4rem;
+$m7: .2rem;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Loading from '../Loading'
 import ErrorMessage from '../ErrorMessage'
+import {StyledBookList,StyledBookItem} from './styles';
 
 // This package help us to bind apollo to our component
 import {useQuery} from '@apollo/react-hooks';
@@ -11,13 +12,24 @@ import {useQuery} from '@apollo/react-hooks';
 import { GET_BOOKS } from '../../queries' 
 import BookDetails from '../BookDetails';
 
+
+
 const BookItem = ({name, getSelected}) => {  
+   
+    const randomHeight = () => Math.floor(Math.random() * (82.5 - 65)) + 65 + 'vh'; 
+    const randomWidth = () => Math.floor(Math.random() * (7.5 - 2)) + 2 + "em"; 
+
+    const num = randomWidth;
+    console.log(num)
+
     return (
-        <li onClick={getSelected}>{name}</li>
+        <StyledBookItem onClick={getSelected} bookWidth={num} bookHeight={randomHeight}>
+            <span>{name}</span>
+        </StyledBookItem>
     )
 }
     
-const BookList = () => {
+const BookList = (props) => {
     const [selected, setSelected] = useState(null)
   
     // Then we have to bind it to our component 
@@ -29,14 +41,14 @@ const BookList = () => {
     
     // If theres no error and no loading, we get the books from data
     const { books } = data
-
+    console.log(props)
     return (
-        <div>
+        <StyledBookList>
             {books.map( book => (
                 <BookItem key={book.id} {...book} getSelected={() => setSelected(book.id)}/>)
             )}
-            <BookDetails bookId={selected}/>
-        </div>
+            {/* <BookDetails bookId={selected}/> */}
+        </StyledBookList>
     )
 }
 

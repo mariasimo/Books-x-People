@@ -1,0 +1,100 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton|Overpass+Mono:300,700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-size: 16px;
+    font-family: $ff_body;
+    line-height: $lh_body;
+    background-color: $bg_color;
+    color: $main_color;
+}
+
+main {
+    padding: $m4;
+}
+
+.bg_color {background-color: $bg_color}
+.main_color {background-color: $main_color}
+
+a:link {
+    text-decoration: none;
+}
+
+p, ul {
+    font-size: $f5;
+    font-weight: 100;
+}
+
+.b {
+    font-weight: 700;
+}
+
+.title {
+    font-family: $ff_title;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: $lh-heading;
+    margin: $m4 0;
+    // @media(min-width:$bp_small) {
+    //     font-size: $f1;
+    // }
+}
+
+.t1 {
+    font-size: $f1;
+}
+
+.small {
+    font-size: $f5;
+    margin-top: $m7;
+}
+
+@mixin button($color, $bg) {
+    background-color: $bg;
+    color: $color;
+    cursor: pointer; 
+    font-family: $ff_body;
+    font-size: $f5;
+    padding: $m5;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all ease-in-out .3s;
+
+    &:hover {
+        background-color: darken($bg, 3);
+        color: darken($color, 3)
+    }
+}
+
+@mixin button-line($color) {
+    border: 1px solid transparentize($color, .4);
+    border-radius: 0;
+    background-color: transparent;
+    color: $color;
+    cursor: pointer; 
+    font-family: $ff_body;
+    font-size: $f5;
+    padding: $m5;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all ease-in-out .3s;
+
+    &:hover {
+        color: darken($color, 3)
+    }
+}
+
+.btn {
+    @include button($black, $main_color);
+}
+
+.btn-line {
+    @include button-line($main_color);
+}
