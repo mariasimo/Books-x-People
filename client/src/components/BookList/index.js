@@ -18,7 +18,7 @@ const BookItem = ({name, author, getSelected, bookSize}) => {
     const fontSize = +bookSize.width.replace('em', '')*.8 + 'em';
     return (
         <li onClick={getSelected}>
-            <div style={{width:bookSize.width, height: bookSize.height, fontSize: fontSize}}>
+            <div className="vertical-text" style={{width:bookSize.width, height: bookSize.height, fontSize: fontSize}}>
                 <span className="book-title">{name}</span>
                 {author &&        
                     <span className="book-author">{author.name}</span>

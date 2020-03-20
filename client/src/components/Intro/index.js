@@ -4,7 +4,7 @@ import './styles.scss';
 
 const Intro = () => {
     return (
-        <div className="intro">
+      <div className="container intro">
           <h1 className="title t1">Books x People</h1>
           <div className="content">
             <p>Cuando leemos,  escuchamos nuestros pensamientos en palabras de otros. Nos inspiramos, nos sentimos acompañados y viajamos durante horas por el espacio interior.</p>
@@ -16,7 +16,7 @@ const Intro = () => {
             <Link to="/add-book" className="btn">Añadir un libro a la estantería</Link>
             <button className="btn-line">Buscar libro</button>
           </div>         
-      </div>
+        </div>
     )
 }
 

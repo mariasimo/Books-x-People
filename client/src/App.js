@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Switch,
   Route,
+  withRouter
 } from "react-router-dom";
 
 
@@ -10,16 +11,19 @@ import BookList from './components/BookList'
 import { Footer } from './components/Footer';
 import AddBook from './components/AddBook'
 import Intro from './components/Intro';
+import Header from './components/Header';
 
-function App() {
+function App({location}) {
   return (
     <main>
-      <section className="section_1-2">
+    {location.pathname !== '/' && <Header/>}
+      <section className="section_1-2 section-fixed">
         <Switch>
           <Route path="/" exact component={Intro}/>
           <Route path="/add-book" component={AddBook}/>
         </Switch>
       </section>
+
       <section className="section_1-2 book-list-container">   
         <BookList/>
       </section>
@@ -30,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

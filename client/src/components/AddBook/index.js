@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_AUTHORS, ADD_BOOK, GET_BOOKS } from '../../queries'
- 
+import './styles.scss'
+
 const AddBook = () => {
     const {loading, data} = useQuery(GET_AUTHORS)
     const [addBook, {data: addBookData}] = useMutation(ADD_BOOK)
@@ -41,27 +42,29 @@ const AddBook = () => {
     }
 
     return (
-        <form id="add-book" onSubmit={(e) => handleSubmit(e)}>
-            <div className="field">
-                <label>Book Name:</label>
-                <input type="text" onChange={(e) => setState({...state, name:e.target.value})}/>
-            </div>
+        <div className="add-book container page">
+            <form id="add-book" onSubmit={(e) => handleSubmit(e)}>
+                <div className="field">
+                    <label>Book Name:</label>
+                    <input type="text" onChange={(e) => setState({...state, name:e.target.value})}/>
+                </div>
 
-            <div className="field">
-                <label>Genre:</label>
-                <input type="text" name="genre"  onChange={(e) => setState({...state, genre:e.target.value})}/>
-            </div>
+                <div className="field">
+                    <label>Genre:</label>
+                    <input type="text" name="genre"  onChange={(e) => setState({...state, genre:e.target.value})}/>
+                </div>
 
-            <div className="field">
-                <label>Author:</label>
-                <select  onChange={(e) => setState({...state, authorId:e.target.value})}>
-                    <option label="Select Author"></option>
-                    {displayAuthors()}
-                </select>
-            </div>
+                <div className="field">
+                    <label>Author:</label>
+                    <select  onChange={(e) => setState({...state, authorId:e.target.value})}>
+                        <option label="Select Author"></option>
+                        {displayAuthors()}
+                    </select>
+                </div>
 
-            <button>+</button>
-        </form>
+                <button>+</button>
+            </form>
+        </div>
     )
 }
 

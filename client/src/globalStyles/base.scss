@@ -31,6 +31,18 @@ main {
             width: 50%;
         }
     }
+
+    .section-fixed .container{
+        @media(min-width: $bp_large){
+            height: 100vh;
+            width: 45vw;
+            position: fixed;
+        }
+    }
+
+    .page {
+        margin-left: 3rem;
+    }
 }
 
 .bg_color {background-color: $bg_color}
@@ -65,11 +77,10 @@ p, ul {
 }
 
 .t1 {
-    font-size: $f2;
-
-        @media(min-width:$bp_large) {
-            font-size: $f1;
-        }
+    font-size: $f1;
+}
+.t3 {
+    font-size: $f3;
 }
 
 .small {
@@ -123,3 +134,7 @@ p, ul {
     @include button-line($main_color);
 }
 
+.vertical-text{
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+}
