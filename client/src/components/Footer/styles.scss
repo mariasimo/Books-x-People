@@ -1,0 +1,19 @@
+@import '../../globalStyles/variables.scss';
+
+footer {
+    margin-top: $m2;
+    display: flex;
+    justify-content: space-between;
+
+    .small{
+        text-transform: uppercase;
+        color: transparentize($main_color, 0.25);
+        letter-spacing: 0;
+    }
+
+    .social {
+        a:first-child{
+            margin-right: $m5;
+        }
+    }
+}

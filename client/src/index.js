@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router} from "react-router-dom";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Theme from './Theme/index'
 
 
 // Apollo is our graphql client
@@ -21,9 +21,7 @@ const client = new ApolloClient({
 // and inject into whatever is inside Apollo provider
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <Theme>
-          <App />
-        </Theme>
+          <Router><App /></Router>
     </ApolloProvider>, 
     document.getElementById('root')
 );

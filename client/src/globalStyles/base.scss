@@ -18,6 +18,19 @@ body {
 
 main {
     padding: $m4;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    .section_1-2 {
+        width: 100%;
+        padding: $m4;
+
+        @media(min-width: $bp_large){
+            width: 50%;
+        }
+    }
 }
 
 .bg_color {background-color: $bg_color}
@@ -28,12 +41,16 @@ a:link {
 }
 
 p, ul {
-    font-size: $f5;
+    font-size: $f4;
     font-weight: 100;
 }
 
 .b {
     font-weight: 700;
+}
+
+.small{
+    font-size: $f6;
 }
 
 .title {
@@ -48,7 +65,11 @@ p, ul {
 }
 
 .t1 {
-    font-size: $f1;
+    font-size: $f2;
+
+        @media(min-width:$bp_large) {
+            font-size: $f1;
+        }
 }
 
 .small {
@@ -58,10 +79,12 @@ p, ul {
 
 @mixin button($color, $bg) {
     background-color: $bg;
+    border: 2px solid $main_color;
     color: $color;
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
+    font-weight: 700;
     padding: $m5;
     text-transform: uppercase;
     text-decoration: none;
@@ -81,6 +104,7 @@ p, ul {
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
+    font-weight: 700;
     padding: $m5;
     text-transform: uppercase;
     text-decoration: none;
@@ -98,3 +122,4 @@ p, ul {
 .btn-line {
     @include button-line($main_color);
 }
+

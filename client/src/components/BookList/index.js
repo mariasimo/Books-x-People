@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Loading from '../Loading'
 import ErrorMessage from '../ErrorMessage'
-import {StyledBookList,StyledBookItem} from './styles';
+import  './styles.scss';
 
 // This package help us to bind apollo to our component
 import {useQuery} from '@apollo/react-hooks';
@@ -14,18 +14,17 @@ import BookDetails from '../BookDetails';
 
 
 
-const BookItem = ({name, getSelected}) => {  
-   
-    const randomHeight = () => Math.floor(Math.random() * (82.5 - 65)) + 65 + 'vh'; 
-    const randomWidth = () => Math.floor(Math.random() * (7.5 - 2)) + 2 + "em"; 
-
-    const num = randomWidth;
-    console.log(num)
-
+const BookItem = ({name, author, getSelected, bookSize}) => {  
+    const fontSize = +bookSize.width.replace('em', '')*.8 + 'em';
     return (
-        <StyledBookItem onClick={getSelected} bookWidth={num} bookHeight={randomHeight}>
-            <span>{name}</span>
-        </StyledBookItem>
+        <li onClick={getSelected}>
+            <div style={{width:bookSize.width, height: bookSize.height, fontSize: fontSize}}>
+                <span className="book-title">{name}</span>
+                {author &&        
+                    <span className="book-author">{author.name}</span>
+                }
+            </div>
+        </li>
     )
 }
     
@@ -41,14 +40,24 @@ const BookList = (props) => {
     
     // If theres no error and no loading, we get the books from data
     const { books } = data
-    console.log(props)
+    console.log(books)
+
+    // Random book size
+    const randomHeight = () => Math.floor(Math.random() * (85 - 75)) + 75 + 'vh'; 
+    const randomWidth = () => Math.floor(Math.random() * (3.75- 1.75)) + 1.75 + "em"; 
+
+    const bookSize = () => ({
+        width: randomWidth(),
+        height: randomHeight(),
+    })
+  
     return (
-        <StyledBookList>
-            {books.map( book => (
-                <BookItem key={book.id} {...book} getSelected={() => setSelected(book.id)}/>)
+        <ul className="book-list">
+            {books.map( book => (   
+                <BookItem key={book.id} {...book} getSelected={() => setSelected(book.id)} bookSize={bookSize()}/>)
             )}
             {/* <BookDetails bookId={selected}/> */}
-        </StyledBookList>
+        </ul>
     )
 }
 

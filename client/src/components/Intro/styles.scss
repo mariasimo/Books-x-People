@@ -1,0 +1,25 @@
+@import '../../globalStyles/variables.scss';
+
+.intro {
+    .title {
+        max-width: 32rem;
+        margin-bottom: $m3;
+    }
+    .content {
+        margin-bottom: $m3;
+        max-width: 40rem;
+
+        p {
+            margin-top: 0;
+        }
+    }
+    .cta .btn {
+        margin-bottom: $m5;
+    }
+
+    @media(min-width: $bp_large){
+        height: 100vh;
+        width: 45vw;
+        position: fixed;
+    }
+}

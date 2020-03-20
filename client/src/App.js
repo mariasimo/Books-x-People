@@ -1,27 +1,30 @@
 import React from 'react';
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
+
 
 import './globalStyles/base.scss';
 import BookList from './components/BookList'
-
+import { Footer } from './components/Footer';
+import AddBook from './components/AddBook'
+import Intro from './components/Intro';
 
 function App() {
   return (
     <main>
-      <section className="intro">
-          <h1 className="title t1">Books x People</h1>
-          <div className="content">
-            <p>Cuando leemos,  escuchamos nuestros pensamientos en palabras de otros. Nos inspiramos, pensamos con los demas,  nos sentimos acompañados y viajamos durante horas por el espacio interior.</p>
-            <p>En estos tiempos difíciles un libro puede ser un gran aliado. Deja aquí tu lectura recomendada.</p>
-          </div>
-          <p>Recomienda un libro para estos días en casa. <span className="b">#YoMeQuedoEnCasa</span></p>
-          
-          <button className="btn">Añadir un libro a la estantería</button>
-          <button className="btn-line">Buscar libro</button>
+      <section className="section_1-2">
+        <Switch>
+          <Route path="/" exact component={Intro}/>
+          <Route path="/add-book" component={AddBook}/>
+        </Switch>
       </section>
-
-      <section className="book-list">   
+      <section className="section_1-2 book-list-container">   
         <BookList/>
       </section>
+
+      {/* <Footer/> */}
       {/* <AddBook/> */}
     </main>
   );
