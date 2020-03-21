@@ -1,5 +1,6 @@
 import React from 'react'
 import Loading from '../Loading'
+import { Link } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage'
 import  './styles.scss';
 
@@ -11,23 +12,24 @@ import {useQuery} from '@apollo/react-hooks';
 // * We import it from:
 import { GET_BOOKS } from '../../queries' 
 
-const BookItem = ({name, author, width, height, getSelected}) => {  
+const BookItem = ({name, author, recommendedBy, width, height, id}) => {  
 
-    const fontSize = width.replace('em', '')*.8 + 'em';
+    const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
+    const fontSize = width.replace('em', '')* factor + 'em';
+
     return (
-        <li onClick={getSelected}>
-            <div className="vertical-text" 
-                style={{width:width, height: height, fontSize: fontSize}}
-            >
-                <span className="book-title">{name}</span>
-                <span className="book-author">{author}</span>
-            </div>
+        <li>
+            <Link to={`/libro/${recommendedBy}/${id}`}>
+                <div className="vertical-text" style={{width:width, height: height, fontSize: fontSize}}>
+                    <span className="book-title">{name}</span>
+                    <span className="book-author">{author}</span>
+                </div>
+            </Link>
         </li>
     )
 }
     
 const BookList = () => {
-    // const [selected, setSelected] = useState(null)
   
     // Then we have to bind it to our component 
     // For that, we use useQuey
@@ -42,11 +44,8 @@ const BookList = () => {
     return (
         <ul className="book-list">
             {books.map( book => (   
-                <BookItem key={book.id} {...book} 
-                    // getSelected={() => setSelected(book.id)} 
-                />)
+                <BookItem key={book.id} {...book}/>)
             )}
-            {/* <BookDetails bookId={selected}/> */}
         </ul>
     )
 }

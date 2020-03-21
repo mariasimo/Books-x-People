@@ -65,16 +65,9 @@ const GET_BOOK_DETAILS=gql`
         book(id:$id){
             id
             name
-            genre
-            author {
-                id
-                name
-                age
-                books {
-                    name
-                    id
-                }
-            }
+            comment
+            author
+            recommendedBy
         }
     }
 `

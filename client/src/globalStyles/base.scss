@@ -90,18 +90,19 @@ p, ul {
     font-weight: 700;
     line-height: $lh-heading;
     margin: $m4 0;
-    // @media(min-width:$bp_small) {
-    //     font-size: $f1;
-    // }
 }
 
 .t1 {
     font-size: $f1;
 }
+.t2{
+    font-size: $f2;
+}
 
 .t3 {
     font-size: $f3;
-    line-height: $lh-large;
+    line-height: $lh-heading;
+    letter-spacing: 0.065em;
 }
 
 .small {
