@@ -9,7 +9,8 @@ const bookSchema = new Schema({
     moderated: Boolean,
     published: Boolean,
     height: String,
-    width: String
+    width: String,
+    tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}]
 })
 
 module.exports = mongoose.model('Book', bookSchema)

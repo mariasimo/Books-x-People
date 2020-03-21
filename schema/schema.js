@@ -3,6 +3,7 @@
 const graphql = require('graphql');
 
 const Book = require('../models/Book.model')
+const Tag = require('../models/Tag.model')
 
 // tenemos dos object types, books and authors
 const { 
@@ -31,10 +32,18 @@ const BookType = new GraphQLObjectType({
     moderated: {type: GraphQLBoolean},
     published: {type: GraphQLBoolean},
     height: {type: GraphQLString},
-    width: {type: GraphQLString}
+    width: {type: GraphQLString},
+    tags: {type: GraphQLList(TagType)}
   })
 });
 
+const TagType = new GraphQLObjectType({
+  name: 'Tag',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString }
+  })
+})
 
 // Root Queries son la forma en la que el usuario salta al graph para solicitar datos
 const RootQuery = new GraphQLObjectType({
@@ -59,6 +68,12 @@ const RootQuery = new GraphQLObjectType({
         resolve(parent, args){
             return Book.find()
         }
+    },
+    tags: {
+      type: new GraphQLList(TagType),
+      resolve(parent, args){
+          return Tag.find()
+      }
     }
   }
 });
@@ -94,12 +109,22 @@ const Mutations = new GraphQLObjectType({
         });
         return Book.create(book)
       }
+    },
+    addTag: {
+      type: TagType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+      },
+      resolve(_, args) {
+        let tag = new Tag({
+          name:args.name
+        });
+        return Tag.create(tag)
+      } 
     }
 
   }
 })
-
-
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
