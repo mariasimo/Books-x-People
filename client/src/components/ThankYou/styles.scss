@@ -6,4 +6,17 @@
         background-color: $bg_color;
         color: $main_color;
     }
+
+    .social-sharing {
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        margin: $m3 0 0;
+    }
+
+    .go-back {
+        border-top: 1px dotted $main_color;
+        margin: $m4 -1*$m4 0;
+        padding: $m4 $m4 0;
+    }
 }

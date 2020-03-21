@@ -6,6 +6,7 @@
         background-color: $main_color;
 
         .field {
+            padding:0 $m6;
             margin-bottom: $m4;
 
             label {
@@ -27,11 +28,12 @@
         }
 
         .buttons {
+            padding:0 $m6;
             display: flex; 
             justify-content: flex-end;
             align-items: center;
 
-            button:first-child{
+            > *:first-child{
                 margin-right: $m6;
             }
         }

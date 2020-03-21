@@ -166,3 +166,19 @@ p, ul {
     writing-mode: tb-rl;
     transform: rotate(-180deg);
 }
+
+.horizontal-list {
+    padding:  0;
+    margin:  0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    
+    li {
+        margin-right: $m5;
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}

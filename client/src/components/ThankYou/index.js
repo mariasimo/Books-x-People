@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const ThankYou = () => {
@@ -11,7 +12,7 @@ const ThankYou = () => {
                 <p>Seguro que tu libro está pronto en nuestras estanterías.</p>
                 <div className="social-sharing">
                     <p>Compartir:</p>
-                    <ul className="social-icons">
+                    <ul className="social-icons horizontal-list">
                         <li><a href="#"><img src={`/whatsapp-icon.svg`}/></a></li>
                         <li><a href="#"><img src={`/twitter-icon.svg`}/></a></li>
                         <li><a href="#"><img src={`/linkedin-icon.svg`}/></a></li>
@@ -19,7 +20,8 @@ const ThankYou = () => {
                         <li><a href="#"><img src={`/mail-icon.svg`}/></a></li>
                     </ul>
                 </div>
-                <div className="cta">
+                <div className="go-back">
+                    <Link to="/" class="btn-line">Volver</Link>
                 </div>
             </div>
         </div>

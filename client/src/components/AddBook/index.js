@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_BOOK, GET_BOOKS } from '../../queries'
 import './styles.scss'
@@ -53,26 +54,26 @@ const AddBook = ({history}) => {
             <form id="add-book" className="content" onSubmit={(e) => handleSubmit(e)}>
                 <div className="field">
                     <label>Tu nombre:</label>
-                    <input type="text" onChange={(e) => setState({...state, recommendedBy:e.target.value})}/>
+                    <input type="text" required onChange={(e) => setState({...state, recommendedBy:e.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label>Título del libro:</label>
-                    <input type="text" onChange={(e) => setState({...state, name:e.target.value})}/>
+                    <input type="text" required onChange={(e) => setState({...state, name:e.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label>Autor:</label>
-                    <input type="text" onChange={(e) => setState({...state, author:e.target.value})}/>
+                    <input type="text" required onChange={(e) => setState({...state, author:e.target.value})}/>
                 </div>
 
                 <div className="field">
                     <label>¿Por qué lo recomiendas?</label>
-                    <textarea onChange={(e) => setState({...state, comment:e.target.value})}/>
+                    <textarea rows="5" onChange={(e) => setState({...state, comment:e.target.value})}/>
                 </div>
 
                 <div class="buttons">
-                <button class="btn-line-black">Cancelar</button>
+                <Link to="/" class="btn-line-black">Cancelar</Link>
                 <button class="btn-black">Añadir libro</button>
                 </div>
             </form>
