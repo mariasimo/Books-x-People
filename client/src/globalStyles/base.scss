@@ -17,28 +17,36 @@ body {
 }
 
 main {
-    padding: $m4;
     width: 100%;
     position: relative;
     display: flex;
     flex-wrap: wrap;
 
+    
     .section_1-2 {
         width: 100%;
-        padding: 0 $m4;
+        padding: $m4;
 
         @media(min-width: $bp_large){
             width: 50%;
         }
     }
 
-    .section-fixed .container{
-        @media(min-width: $bp_large){
-            height: 86vh;
-            width: 45vw;
-            position: fixed;
+    .section-fixed {
+        height: 100vh;
+        overflow: visible;
+        overflow-y: scroll;
+        
+        .container{
+            @media(min-width: $bp_large){
+                height: 86vh;
+                width: 45vw;
+                position: fixed;
+            }
         }
     }
+    
+
 
     .page {
         display: flex;
