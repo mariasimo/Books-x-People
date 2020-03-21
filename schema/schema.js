@@ -3,7 +3,7 @@
 const graphql = require('graphql');
 
 const Book = require('../models/Book.model')
-const Author = require('../models/Author.model')
+
 
 // tenemos dos object types, books and authors
 const { 
@@ -11,50 +11,24 @@ const {
     GraphQLString, 
     GraphQLSchema,
     GraphQLID,
-    GraphQLInt,
     GraphQLList,
     GraphQLNonNull
 } = graphql;
 
 
 // Cada tipo es una nueva instancia de GraphQLObjectType
-// Es una función que toma como parámetro un objecto, que
-// define la estructura de book type
+// Es una función que toma como parámetro un objecto, que define la estructura
+
 const BookType = new GraphQLObjectType({
   name: 'Book',
-  // la propiedad field es una función para que cuando
-  // tengamos varios tipos y estén relacionados entre ellos
-  // este todo disponible al cargar el archivo gracias al hoisting
+  // field se envuelve en una función para que este todo disponible al cargar el archivo gracias al hoisting
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    genre: { type: GraphQLString },
-    author: { 
-        type: AuthorType,
-        resolve(parent, _){
-            return Author.findById(parent.authorId)
-        }
-    }
+    comment: {type: GraphQLString},
+    author: {type: GraphQLString},
+    recommendedBy: {type: GraphQLString}
   })
-});
-
-const AuthorType = new GraphQLObjectType({
-    name: 'Author',
-    // la propiedad field es una función para que cuando
-    // tengamos varios tipos y estén relacionados entre ellos
-    // este todo disponible al cargar el archivo gracias al hoisting
-    fields: () => ({
-      id: { type: GraphQLID },
-      name: { type: GraphQLString },
-      age: { type: GraphQLInt },
-      books: { 
-        // Instanciamos una lista de objectos de tipo BookType
-          type: new GraphQLList(BookType),
-          resolve(parent,_){
-              return Book.find({authorId: parent.id})
-          }
-        }
-    })
 });
 
 
@@ -75,25 +49,11 @@ const RootQuery = new GraphQLObjectType({
         return Book.findById(args.id);
       }
     },
-    author: {
-        type: AuthorType,
-        args: {id: {type: GraphQLID}},
-        resolve(_, args) {
-            return Author.findById(args.id); 
-        }
-    },
     books: {
         // Cuando quiera trabajar con arrays tengo que usar GraphQLList
         type: new GraphQLList(BookType),
         resolve(parent, args){
             return Book.find()
-        }
-    },
-    authors: {
-        // Cuando quiera trabajar con arrays tengo que usar GraphQLList
-        type: new GraphQLList(AuthorType),
-        resolve(parent, args){
-            return Author.find()
         }
     }
   }
@@ -105,33 +65,20 @@ const RootQuery = new GraphQLObjectType({
 const Mutations = new GraphQLObjectType({
   name: 'Mutation', 
   fields: {
-
-    addAuthor: {
-      type: AuthorType,
-      args: {
-        name: { type: GraphQLNonNull(GraphQLString) },
-        age: { type: GraphQLNonNull(GraphQLInt) }
-      },
-      resolve(_, args){
-        let author = new Author({
-          name: args.name,
-          age: args.age
-        });
-        return Author.create(author)
-      }
-    },
     addBook: {
       type: BookType,
       args: {
+        recommendedBy: { type: GraphQLNonNull(GraphQLString) },
         name: { type: GraphQLNonNull(GraphQLString) },
-        genre: { type: GraphQLNonNull(GraphQLString) },
-        authorId: {type: GraphQLNonNull(GraphQLID)}
+        author: { type: GraphQLNonNull(GraphQLString) },
+        comment: { type: GraphQLString },
       },
       resolve(_, args){
         let book = new Book({
           name: args.name,
-          genre: args.genre,
-          authorId: args.authorId,
+          comment: args.comment,
+          recommendedBy: args.recommendedBy,
+          author: args.author,
         });
         return Book.create(book)
       }
