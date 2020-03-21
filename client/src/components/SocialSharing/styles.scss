@@ -1,0 +1,8 @@
+@import '../../globalStyles/variables.scss';
+
+.social-sharing {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    margin: $m3 0 0;
+}
