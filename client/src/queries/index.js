@@ -10,6 +10,8 @@ const GET_BOOKS = gql`
         author
         comment
         recommendedBy
+        width
+        height
     }
 }
 `
@@ -24,13 +26,27 @@ const GET_AUTHORS = gql`
 `
 
 const ADD_BOOK=gql`
-mutation($name:String!, $comment:String!, $author: String!, $recommendedBy: String!){
-    addBook(name:$name, comment:$comment, author:$author, recommendedBy:$recommendedBy){
-        name
-        comment
-        author
+mutation(
+    $name:String!, 
+    $comment:String!, 
+    $author: String!, 
+    $recommendedBy: String!,
+    $moderated: Boolean!,
+    $published: Boolean!,
+    $width: String!,
+    $height: String!,
+    ){
+    addBook(
+        name:$name, 
+        comment:$comment, 
+        author:$author, 
+        recommendedBy:$recommendedBy,
+        moderated: $moderated,
+        published: $published,
+        width: $width,
+        height: $height
+    ){
         recommendedBy
-        id
     }
 }
 `

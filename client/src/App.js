@@ -25,7 +25,7 @@ function App({location}) {
         </Switch>
       </section>
 
-      <section className="section_1-2 book-list-container">   
+      <section className={`section_1-2 book-list-container ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
         <BookList/>
       </section>
 

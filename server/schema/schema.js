@@ -4,15 +4,15 @@ const graphql = require('graphql');
 
 const Book = require('../models/Book.model')
 
-
 // tenemos dos object types, books and authors
 const { 
     GraphQLObjectType, 
     GraphQLString, 
     GraphQLSchema,
     GraphQLID,
-    GraphQLList,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLBoolean,
+    GraphQLList
 } = graphql;
 
 
@@ -27,7 +27,11 @@ const BookType = new GraphQLObjectType({
     name: { type: GraphQLString },
     comment: {type: GraphQLString},
     author: {type: GraphQLString},
-    recommendedBy: {type: GraphQLString}
+    recommendedBy: {type: GraphQLString},
+    moderated: {type: GraphQLBoolean},
+    published: {type: GraphQLBoolean},
+    height: {type: GraphQLString},
+    width: {type: GraphQLString}
   })
 });
 
@@ -68,10 +72,14 @@ const Mutations = new GraphQLObjectType({
     addBook: {
       type: BookType,
       args: {
-        recommendedBy: { type: GraphQLNonNull(GraphQLString) },
         name: { type: GraphQLNonNull(GraphQLString) },
         author: { type: GraphQLNonNull(GraphQLString) },
         comment: { type: GraphQLString },
+        recommendedBy: { type: GraphQLNonNull(GraphQLString) },
+        moderated: {type: GraphQLBoolean},
+        published: {type: GraphQLBoolean},
+        width: {type: GraphQLString},
+        height: {type: GraphQLString}
       },
       resolve(_, args){
         let book = new Book({
@@ -79,6 +87,10 @@ const Mutations = new GraphQLObjectType({
           comment: args.comment,
           recommendedBy: args.recommendedBy,
           author: args.author,
+          moderated: args.moderated,
+          published: args.published,
+          width: args.width,
+          height: args.height,
         });
         return Book.create(book)
       }
@@ -86,7 +98,6 @@ const Mutations = new GraphQLObjectType({
 
   }
 })
-
 
 
 

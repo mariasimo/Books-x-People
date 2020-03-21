@@ -11,11 +11,14 @@ import {useQuery} from '@apollo/react-hooks';
 // * We import it from:
 import { GET_BOOKS } from '../../queries' 
 
-const BookItem = ({name, author, getSelected, bookSize}) => {  
-    const fontSize = +bookSize.width.replace('em', '')*.8 + 'em';
+const BookItem = ({name, author, width, height, getSelected}) => {  
+
+    const fontSize = width.replace('em', '')*.8 + 'em';
     return (
         <li onClick={getSelected}>
-            <div className="vertical-text" style={{width:bookSize.width, height: bookSize.height, fontSize: fontSize}}>
+            <div className="vertical-text" 
+                style={{width:width, height: height, fontSize: fontSize}}
+            >
                 <span className="book-title">{name}</span>
                 <span className="book-author">{author}</span>
             </div>
@@ -35,23 +38,12 @@ const BookList = () => {
     
     // If theres no error and no loading, we get the books from data
     const { books } = data
-    console.log(data)
-
-    // Random book size
-    const randomHeight = () => Math.floor(Math.random() * (85 - 75)) + 75 + 'vh'; 
-    const randomWidth = () => Math.floor(Math.random() * (3.75- 1.75)) + 1.75 + "em"; 
-
-    const bookSize = () => ({
-        width: randomWidth(),
-        height: randomHeight(),
-    })
-  
+    console.log(books)
     return (
         <ul className="book-list">
             {books.map( book => (   
                 <BookItem key={book.id} {...book} 
                     // getSelected={() => setSelected(book.id)} 
-                    bookSize={bookSize()}
                 />)
             )}
             {/* <BookDetails bookId={selected}/> */}

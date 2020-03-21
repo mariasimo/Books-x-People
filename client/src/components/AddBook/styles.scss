@@ -4,5 +4,36 @@
     form{
         color: $bg_color;
         background-color: $main_color;
+
+        .field {
+            margin-bottom: $m4;
+
+            label {
+                display: block;
+                margin-bottom: $m7;
+            }
+            input, textarea {
+                display: block;
+                background-color: transparent;
+                width: 100%;
+                box-shadow: none;
+                border: 1px dotted transparentize($bg_color,.4);
+                padding: $m7 $m6;
+                font-size: $f4*1.3;
+                font-family: $ff_body;
+                font-weight: 600;
+                letter-spacing: -0.05em;
+            }
+        }
+
+        .buttons {
+            display: flex; 
+            justify-content: flex-end;
+            align-items: center;
+
+            button:first-child{
+                margin-right: $m6;
+            }
+        }
     }
 }

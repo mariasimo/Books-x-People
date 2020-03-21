@@ -25,7 +25,7 @@ main {
 
     .section_1-2 {
         width: 100%;
-        padding: $m4;
+        padding: 0 $m4;
 
         @media(min-width: $bp_large){
             width: 50%;
@@ -41,20 +41,26 @@ main {
     }
 
     .page {
-        margin-left: 3rem;
         display: flex;
         justify-content: center;    
         align-items: center; 
+        margin-left: $m3;
 
         .content {
             width: 75%;
-            padding: $m5 $m4;
+            padding: $m4;
                         
             @media(max-width: $bp_large){
                 margin-left: 3rem;
                 width: 100%;
             }
         }
+    }
+
+    .header-layout {
+        @media(max-width: $bp_large){
+            margin-left: $m2
+        }  
     }
 }
 
@@ -110,7 +116,6 @@ p, ul {
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
-    font-weight: 700;
     padding: $m5;
     text-transform: uppercase;
     text-decoration: none;
@@ -130,8 +135,7 @@ p, ul {
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
-    font-weight: 700;
-    padding: $m5;
+    padding: $m5 - 0.075;
     text-transform: uppercase;
     text-decoration: none;
     transition: all ease-in-out .3s;
@@ -148,6 +152,15 @@ p, ul {
 .btn-line {
     @include button-line($main_color);
 }
+
+.btn-black {
+    @include button($main_color, $bg_color);
+}
+
+.btn-line-black {
+    @include button-line($bg_color);
+}
+
 
 .vertical-text{
     writing-mode: tb-rl;
