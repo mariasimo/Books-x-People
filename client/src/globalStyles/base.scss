@@ -34,7 +34,7 @@ main {
 
     .section-fixed .container{
         @media(min-width: $bp_large){
-            height: 100vh;
+            height: 86vh;
             width: 45vw;
             position: fixed;
         }
@@ -42,6 +42,19 @@ main {
 
     .page {
         margin-left: 3rem;
+        display: flex;
+        justify-content: center;    
+        align-items: center; 
+
+        .content {
+            width: 75%;
+            padding: $m5 $m4;
+                        
+            @media(max-width: $bp_large){
+                margin-left: 3rem;
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -79,8 +92,10 @@ p, ul {
 .t1 {
     font-size: $f1;
 }
+
 .t3 {
     font-size: $f3;
+    line-height: $lh-large;
 }
 
 .small {

@@ -8,10 +8,10 @@ import {
 
 import './globalStyles/base.scss';
 import BookList from './components/BookList'
-import { Footer } from './components/Footer';
 import AddBook from './components/AddBook'
 import Intro from './components/Intro';
 import Header from './components/Header';
+import ThankYou from './components/ThankYou';
 
 function App({location}) {
   return (
@@ -20,7 +20,8 @@ function App({location}) {
       <section className="section_1-2 section-fixed">
         <Switch>
           <Route path="/" exact component={Intro}/>
-          <Route path="/add-book" component={AddBook}/>
+          <Route path="/recomendar-libro" component={AddBook}/>
+          <Route path="/gracias/:id" component={ThankYou}/>
         </Switch>
       </section>
 

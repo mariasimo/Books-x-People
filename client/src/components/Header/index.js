@@ -7,7 +7,7 @@ const Header = () => {
         <header>
             <img src={`/book-icon.svg`}/>
             <Link to="/">
-                <h1 className="title t3 vertical-text">Books x People</h1>
+                <p className="title t3 vertical-text">Books x People</p>
             </Link>
             <img src={`/people-icon.svg`}/>
         </header>

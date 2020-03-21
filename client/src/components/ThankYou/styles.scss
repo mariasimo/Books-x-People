@@ -1,0 +1,9 @@
+@import '../../globalStyles/variables.scss';
+
+.thank-you {
+    .content{
+        border: 1px solid $main_color;
+        background-color: $bg_color;
+        color: $main_color;
+    }
+}

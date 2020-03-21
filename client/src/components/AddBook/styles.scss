@@ -1,14 +1,8 @@
 @import '../../globalStyles/variables.scss';
 
 .add-book {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     form{
         color: $bg_color;
         background-color: $main_color;
-        width: 75%;
-        padding: $m4;
     }
 }

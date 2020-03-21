@@ -13,7 +13,7 @@ const Intro = () => {
           </div>
 
           <div className="cta">
-            <Link to="/add-book" className="btn">Añadir un libro a la estantería</Link>
+            <Link to="/recomendar-libro" className="btn">Añadir un libro a la estantería</Link>
             <button className="btn-line">Buscar libro</button>
           </div>         
         </div>

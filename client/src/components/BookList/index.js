@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Loading from '../Loading'
 import ErrorMessage from '../ErrorMessage'
 import  './styles.scss';
@@ -10,9 +10,6 @@ import {useQuery} from '@apollo/react-hooks';
 // First we have to construct our query
 // * We import it from:
 import { GET_BOOKS } from '../../queries' 
-import BookDetails from '../BookDetails';
-
-
 
 const BookItem = ({name, author, getSelected, bookSize}) => {  
     const fontSize = +bookSize.width.replace('em', '')*.8 + 'em';
@@ -20,16 +17,14 @@ const BookItem = ({name, author, getSelected, bookSize}) => {
         <li onClick={getSelected}>
             <div className="vertical-text" style={{width:bookSize.width, height: bookSize.height, fontSize: fontSize}}>
                 <span className="book-title">{name}</span>
-                {author &&        
-                    <span className="book-author">{author.name}</span>
-                }
+                <span className="book-author">{author}</span>
             </div>
         </li>
     )
 }
     
-const BookList = (props) => {
-    const [selected, setSelected] = useState(null)
+const BookList = () => {
+    // const [selected, setSelected] = useState(null)
   
     // Then we have to bind it to our component 
     // For that, we use useQuey
@@ -40,7 +35,7 @@ const BookList = (props) => {
     
     // If theres no error and no loading, we get the books from data
     const { books } = data
-    console.log(books)
+    console.log(data)
 
     // Random book size
     const randomHeight = () => Math.floor(Math.random() * (85 - 75)) + 75 + 'vh'; 
@@ -54,7 +49,10 @@ const BookList = (props) => {
     return (
         <ul className="book-list">
             {books.map( book => (   
-                <BookItem key={book.id} {...book} getSelected={() => setSelected(book.id)} bookSize={bookSize()}/>)
+                <BookItem key={book.id} {...book} 
+                    // getSelected={() => setSelected(book.id)} 
+                    bookSize={bookSize()}
+                />)
             )}
             {/* <BookDetails bookId={selected}/> */}
         </ul>
