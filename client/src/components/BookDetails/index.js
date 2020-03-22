@@ -26,7 +26,9 @@ const BookDetails = ({match}) => {
                             {book.tags &&
                             <div className="tags-group">
                               {book.tags.map(tag => (
-                                 <span className="tag">{tag.name}</span>
+                                 <Link to={`/buscar-libro/?tag=${tag.id}`}>
+                                    <span className="tag">{tag.name}</span>
+                                 </Link>
                                 ))}
                             </div>}
 

@@ -14,13 +14,13 @@ import { GET_BOOKS } from '../../queries'
 
 const BookItem = (props) => {  
 
-    const {name, width, author, recommendedBy, height, id, getSelected, pickedBook} = props
+    const {name, width, author, height, id, getSelected, pickedBook} = props
     const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
     const fontSize = width.replace('em', '')* factor + 'em';
 
     return (
         <li onClick={getSelected} className={(pickedBook === id) ? 'picked-book' : ""}>
-            <Link to={`/libro/${recommendedBy}/${id}`}>
+            <Link to={`/libro/${id}`}>
                 <div className="vertical-text" style={{width:width, height: height, fontSize: fontSize}}>
                     <span className="book-title">{name}</span>
                     <span className="book-author">{author}</span>

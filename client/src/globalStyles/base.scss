@@ -210,6 +210,10 @@ p, ul {
     border: none;
     padding: 0;
 
+    a:visited, a:link {
+        color: $main_color;
+    }
+    
     .tag {
         border: 1px solid transparentize($main_color, .4);
         border-radius: $m7;
@@ -230,6 +234,7 @@ p, ul {
             background-color: transparentize(white, .4);
             border: 1px solid transparentize($bg_color, .2);
         }
+        
 
     }
 }

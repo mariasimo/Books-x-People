@@ -13,6 +13,7 @@ import Intro from './components/Intro';
 import Header from './components/Header';
 import ThankYou from './components/ThankYou';
 import BookDetails from './components/BookDetails'
+import SearchBook from './components/SearchBook';
 
 function App({location}) {
   return (
@@ -23,7 +24,8 @@ function App({location}) {
           <Route path="/" exact component={Intro}/>
           <Route path="/recomendar-libro" component={AddBook}/>
           <Route path="/gracias/:id" component={ThankYou}/>
-          <Route path="/libro/:recommendedBy/:bookId" render={(props) => <BookDetails {...props}/>}/>
+          <Route path="/libro/:bookId" render={(props) => <BookDetails {...props}/>}/>
+          <Route path="/buscar-libro" component={SearchBook}/>
         </Switch>
       </section>
 

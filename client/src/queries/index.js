@@ -60,6 +60,7 @@ const GET_BOOK_DETAILS=gql`
             recommendedBy
             tags {
                 name
+                id
             }
         }
     }
