@@ -36,7 +36,7 @@
                 justify-content: space-between;
                 font-family: $ff_title;
                 padding: $m5 0;
-                transition: background-color ease-in .3s;
+                transition: background-color ease-in .1s;
                 cursor: pointer;
     
                 &:hover {
@@ -46,6 +46,14 @@
                 span {
                     letter-spacing: 0.015em;
                 }
+            }
+        }
+
+        &.picked-book div {
+            background-color: black;
+
+            &:hover {
+                background-color: black;
             }
         }
     }
