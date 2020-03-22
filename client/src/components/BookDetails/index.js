@@ -7,6 +7,7 @@ import './styles.scss';
 import { GET_BOOK_DETAILS } from '../../queries'
 import { useQuery } from '@apollo/react-hooks';
 import SocialSharing from '../SocialSharing';
+import TagList from '../Tags';
 
 const BookDetails = ({match}) => {
     // Anidar una desestructuración aqui para extraer directamente books?
@@ -22,17 +23,7 @@ const BookDetails = ({match}) => {
                             <p>Recomendado por <span className="b">{book.recommendedBy}</span></p>
                             <h1 className="title t1">{book.name}</h1>
                             <h2 className="title t3">{book.author}</h2>
-                           
-                            {book.tags &&
-                            <div className="tags-group">
-                              {book.tags.map(tag => (
-                                 <Link to={`/buscar-libro/?tag=${tag.id}`}>
-                                    <span className="tag">{tag.name}</span>
-                                 </Link>
-                                ))}
-                            </div>}
-
-                            <p>{book.comment}</p>
+                            <TagList tags={book.tags}/>                            <p>{book.comment}</p>
                             <div className="go-back">
                                 <Link to="/" className="btn-line">Devolver a la estantería</Link>
                             </div>

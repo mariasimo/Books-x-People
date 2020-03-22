@@ -1,0 +1,9 @@
+@import '../../globalStyles/variables.scss';
+
+.search-book {
+    h1 {
+        font-size: $f4;
+        text-transform: uppercase;
+        color: red;
+    }
+}

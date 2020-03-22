@@ -36,18 +36,20 @@ const BookList = () => {
     // Then we have to bind it to our component 
     // For that, we use useQuey
     const {loading, error, data} = useQuery(GET_BOOKS);
-    if(error) return <ErrorMessage/>
-    if(loading) return <Loading/>
-    
-    // If theres no error and no loading, we get the books from data
-    const { books } = data
+    const books = data && data.books;
     return (
-        <ul className="book-list">
-            {books.map( book => (   
-                <BookItem key={book.id} {...book} pickedBook={selected} getSelected={() => setSelected(book.id)}/>)
-            )}
-        </ul>
-    )
+        !error
+            ?  !loading 
+                ? books && (
+                    <ul className="book-list">
+                        {books.map( book => (   
+                            <BookItem key={book.id} {...book} pickedBook={selected} getSelected={() => setSelected(book.id)}/>)
+                        )}
+                    </ul>
+                )
+                : <Loading/>
+            : <ErrorMessage/>
+        )
 }
 
 export default BookList;

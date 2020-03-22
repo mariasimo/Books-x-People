@@ -50,10 +50,10 @@
         }
 
         &.picked-book div {
-            background-color: black;
+            background-color: $bg_color;
 
             &:hover {
-                background-color: black;
+                background-color: $bg_color;
             }
         }
     }

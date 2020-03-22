@@ -14,7 +14,7 @@ const Intro = () => {
 
           <div className="cta">
             <Link to="/recomendar-libro" className="btn">Añadir un libro a la estantería</Link>
-            <button className="btn-line">Buscar libro</button>
+            <Link to="/buscar-libro" className="btn-line">Buscar libro</Link>
           </div>         
         </div>
     )
