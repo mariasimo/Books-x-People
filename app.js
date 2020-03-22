@@ -1,11 +1,12 @@
 require( 'dotenv' ).config()
+
 const express   = require('express')
 const schema    = require('./schema/schema')
 const mongoose  = require('mongoose')
 const cors      = require('cors');
 
 //Connect to db 
-mongoose.connect(process.env.DBLOCAL,
+mongoose.connect(process.env.DBSTR,
 { useUnifiedTopology: true,
     useNewUrlParser: true 
 })
@@ -39,3 +40,10 @@ app.use('/graphql', graphqlHTTP({
 }))
 
 app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`))
+
+
+// Config Heroku
+app.use(favicon(path.join(__dirname, 'public', 'favicon.svg')));
+app.use((req, res) => {res.sendFile(__dirname + "/public/index.html")});
+
+module.exports = app;

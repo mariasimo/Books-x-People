@@ -3,6 +3,8 @@ const express   = require('express')
 const schema    = require('./schema/schema')
 const mongoose  = require('mongoose')
 const cors      = require('cors');
+const path         = require('path');
+
 
 //Connect to db 
 mongoose.connect(process.env.DBSTR,
@@ -38,6 +40,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
