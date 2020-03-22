@@ -26,7 +26,7 @@ const BookDetails = ({match}) => {
                            
                             <div className="tags-group">
                                 {book.tags.map((tag,idx) => (
-                                    <Link key={tag.id} to="/buscar-libro">
+                                    <Link key={tag.id} to={`/buscar-libro/filtrar?tag=${tag.id}`}>
                                         <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`}/>
                                         <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
                                     </Link>

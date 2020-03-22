@@ -12,13 +12,16 @@ import {useQuery} from '@apollo/react-hooks';
 // * We import it from:
 import { GET_BOOKS } from '../../queries' 
 
-const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tags, selectedTags}) => {  
+const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tags, selectedTags, queryTag}) => {  
     const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
     const fontSize = width.replace('em', '')* factor + 'em';
 
     const isSelectedByTag = tags => {
         const tagsIds = tags.map(tag => tag.id)
-        const isTagIncluded =  Object.values(selectedTags).map(tag => {
+        const allTags = Object.values(selectedTags)
+        allTags.push(queryTag)
+
+        const isTagIncluded =  allTags.map(tag => {
             return (tagsIds.includes(tag))
         })
         return (isTagIncluded.includes(true)) ? true : false;
@@ -36,7 +39,7 @@ const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tag
     )
 }
     
-const BookList = ({selectedTags}) => {
+const BookList = ({selectedTags, queryTag}) => {
     const [selected, setSelected] = useState(null)
 
     const {loading, error, data} = useQuery(GET_BOOKS);
@@ -46,7 +49,7 @@ const BookList = ({selectedTags}) => {
         !error
             ?  !loading 
                 ? books && (
-                    <ul className={`book-list ${selectedTags.length ? 'search-mode' : ''}`}>
+                    <ul className={`book-list ${(selectedTags.length || queryTag) ? 'search-mode' : ''}`}>
                         {books.map( book => (   
                             <BookItem 
                                 {...book} 
@@ -54,6 +57,7 @@ const BookList = ({selectedTags}) => {
                                 pickedBook={selected} 
                                 getSelected={() => setSelected(book.id)}
                                 selectedTags={selectedTags}
+                                queryTag={queryTag}
                             />
                         )
                         )}

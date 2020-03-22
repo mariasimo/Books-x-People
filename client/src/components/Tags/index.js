@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './styles.scss';
 
 // Hacer que esto sean inputs, y que haya un f
-const TagList = ({tags, handleTagSelection}) => {
+const TagList = ({tags, handleTagSelection, queryTag}) => {
     const [tagList, setTagList] = useState(tags)
 
     useEffect(() => {
@@ -25,8 +25,14 @@ const TagList = ({tags, handleTagSelection}) => {
             <div className="tags-group">
               {tagList.map((tag,idx) => (
                     <a key={tag.id}>
-                        <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`}  onClick={(e)=>checkTag(e)}/>
-                        <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
+                        <input 
+                            type="checkbox" 
+                            name={tag.name} 
+                            value={tag.name} 
+                            id={`tag-${idx}`}  
+                            onClick={(e)=>checkTag(e)}
+                        />
+                        <label htmlFor={`tag-${idx}`} className={`tag ${(tag.isChecked || queryTag === tag.id) ? "is-checked" : ""}`}>{tag.name}</label>
                     </a>
                 ))}
             </div>        
