@@ -33,7 +33,14 @@ const BookType = new GraphQLObjectType({
     published: {type: GraphQLBoolean},
     height: {type: GraphQLString},
     width: {type: GraphQLString},
-    tags: {type: GraphQLList(TagType)}
+    tags: {
+      type: new GraphQLList(TagType),
+      resolve(parent, args){
+        console.log(parent, args)
+        return Tag.find()
+        .then(tags => tags.filter(tag => parent.tags.includes(tag.id)))
+      }
+    },
   })
 });
 
@@ -94,9 +101,12 @@ const Mutations = new GraphQLObjectType({
         moderated: {type: GraphQLBoolean},
         published: {type: GraphQLBoolean},
         width: {type: GraphQLString},
-        height: {type: GraphQLString}
+        height: {type: GraphQLString},
+        tags: {type: GraphQLList(GraphQLID)}
       },
+
       resolve(_, args){
+
         let book = new Book({
           name: args.name,
           comment: args.comment,
@@ -106,6 +116,7 @@ const Mutations = new GraphQLObjectType({
           published: args.published,
           width: args.width,
           height: args.height,
+          tags: args.tags
         });
         return Book.create(book)
       }
