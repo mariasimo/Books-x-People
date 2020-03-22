@@ -12,14 +12,20 @@ import {useQuery} from '@apollo/react-hooks';
 // * We import it from:
 import { GET_BOOKS } from '../../queries' 
 
-const BookItem = (props) => {  
-
-    const {name, width, author, height, id, getSelected, pickedBook} = props
+const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tags, selectedTags}) => {  
     const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
     const fontSize = width.replace('em', '')* factor + 'em';
 
+    const isSelectedByTag = tags => {
+        const tagsIds = tags.map(tag => tag.id)
+        const isTagIncluded =  Object.values(selectedTags).map(tag => {
+            return (tagsIds.includes(tag))
+        })
+        return (isTagIncluded.includes(true)) ? true : false;
+    }
+
     return (
-        <li onClick={getSelected} className={(pickedBook === id) ? 'picked-book' : ""}>
+        <li onClick={getSelected} className={(pickedBook === id) ? 'picked-book' : "", (isSelectedByTag(tags)) ? 'selected-by-tag':""} >
             <Link to={`/libro/${id}`}>
                 <div className="vertical-text" style={{width:width, height: height, fontSize: fontSize}}>
                     <span className="book-title">{name}</span>
@@ -30,20 +36,26 @@ const BookItem = (props) => {
     )
 }
     
-const BookList = () => {
+const BookList = ({selectedTags}) => {
     const [selected, setSelected] = useState(null)
-    
-    // Then we have to bind it to our component 
-    // For that, we use useQuey
+
     const {loading, error, data} = useQuery(GET_BOOKS);
-    const books = data && data.books;
+    let books = data && data.books;
+
     return (
         !error
             ?  !loading 
                 ? books && (
-                    <ul className="book-list">
+                    <ul className={`book-list ${selectedTags.length ? 'search-mode' : ''}`}>
                         {books.map( book => (   
-                            <BookItem key={book.id} {...book} pickedBook={selected} getSelected={() => setSelected(book.id)}/>)
+                            <BookItem 
+                                {...book} 
+                                key={book.id} 
+                                pickedBook={selected} 
+                                getSelected={() => setSelected(book.id)}
+                                selectedTags={selectedTags}
+                            />
+                        )
                         )}
                     </ul>
                 )

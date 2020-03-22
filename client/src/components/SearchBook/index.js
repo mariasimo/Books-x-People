@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './styles.scss'
 import {useQuery} from '@apollo/react-hooks';
 import { GET_TAGS } from '../../queries' 
@@ -6,11 +6,11 @@ import Loading from '../Loading';
 import ErrorMessage from '../ErrorMessage';
 import TagList from '../Tags';
 
-const SearchBook = () => {
+const SearchBook = ({handleTagSelection}) => {
     const {loading, error, data} = useQuery(GET_TAGS);
     if(error) return <ErrorMessage/>
     if(loading) return <Loading/>    
-    const { tags } = data
+    const { tags } = data;
 
     return (
         <div className="search-book page">
@@ -18,10 +18,12 @@ const SearchBook = () => {
             {!error
             ?  !loading 
                 ? tags && (
-                        <div>
-                            <h1>Estoy buscando un libro para...</h1> 
-                            <TagList tags={tags}/>
-                        </div>
+                    <form>
+                        <fieldset>
+                            <legend>Estoy buscando un libro para...</legend>
+                            <TagList tags={tags} handleTagSelection={(tags)=>handleTagSelection(tags)}/>
+                        </fieldset>
+                    </form>
                 )
                 : <Loading/>
             : <ErrorMessage/>}

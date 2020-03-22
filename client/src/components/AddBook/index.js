@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { ADD_BOOK, GET_BOOKS, GET_TAGS } from '../../queries'
 import './styles.scss'
+import TagList from '../Tags';
 
 const AddBook = ({history}) => {
     const [addBook] = useMutation(ADD_BOOK)
@@ -23,18 +24,6 @@ const AddBook = ({history}) => {
         } 
     }, [data]);
 
-    const checkTag = (e) => {
-        const {tags} = state;
-        tags.forEach(tag => {
-            if (tag.name === e.target.value)
-                tag.isChecked =  e.target.checked
-            })
-            setState({...state, tags:tags})
-
-            const tagsSelected = state.tags.filter(tag=>tag.isChecked==true).map(tag => tag.id)
-            console.log(tagsSelected)
-    }
-    
     
     // Random book size
     const randomHeight = () => Math.floor(Math.random() * (95 - 80)) + 80 + '%'; 
@@ -65,26 +54,15 @@ const AddBook = ({history}) => {
                 published: false,
                 width: bookSize.width,
                 height: bookSize.height,
-                tags:  ["5e7658b0843f140c7c69e6ed", "5e7658a6843f140c7c69e6ec"]
+                tags: tags
 
             },
             refetchQueries:[{query:GET_BOOKS}]
         }) 
         .then(bookSubmitted => {
+            console.log(bookSubmitted)
             const {id} = bookSubmitted.data.addBook
             history.push(`/gracias/${id}`)
-        })
-    }
-
-    const displayTags = () => {
-        return state.tags.map((tag, idx) => {
-            return (
-                // Refactorizat y converit en un componente
-                <>
-                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} onClick={(e)=>checkTag(e)}/>
-                    <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
-                </>
-            )
         })
     }
 
@@ -107,9 +85,9 @@ const AddBook = ({history}) => {
                 </div>
 
                 <div className="field">
-                    <fieldset className="tags-group">
-                        <legend>Este libro es perfecto para...</legend>
-                        {displayTags()}
+                    <fieldset>
+                        <legend>Este es un libro perfecto para...</legend>
+                        <TagList tags={state.tags}/>
                     </fieldset>
                     <input type="text" className="create-tag" placeholder="Añade tu propia etiqueta"/>
                 </div>

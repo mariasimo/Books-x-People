@@ -1,8 +1,13 @@
 @import '../../globalStyles/variables.scss';
 
-.tags-group {
+
+fieldset, .tags-group {
     border: none;
     padding: 0;
+
+    input[type="checkbox"]{
+        display: none
+    }
 
     a:visited, a:link {
         color: $main_color;
@@ -25,10 +30,10 @@
             box-shadow: 0 0 6px transparentize($bg_color, .7);
         }
         &.is-checked {
-            background-color: transparentize(white, .4);
-            border: 1px solid transparentize($bg_color, .2);
+            background-color: transparentize($main_color, .1);
+            border: 1px solid transparentize($bg_color, .6);
+            color: $bg_color;
+            font-weight: 700;
         }
-        
-
     }
 }

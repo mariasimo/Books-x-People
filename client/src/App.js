@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Switch,
   Route,
   withRouter
 } from "react-router-dom";
-
 
 import './globalStyles/base.scss';
 import BookList from './components/BookList'
@@ -16,6 +15,12 @@ import BookDetails from './components/BookDetails'
 import SearchBook from './components/SearchBook';
 
 function App({location}) {
+  const [selectedTags, setSelectedTags] = useState([])
+
+  const handleTagSelection = tags => {
+      setSelectedTags(tags)
+  }
+
   return (
     <main>
     {location.pathname !== '/' && <Header/>}
@@ -25,12 +30,14 @@ function App({location}) {
           <Route path="/recomendar-libro" component={AddBook}/>
           <Route path="/gracias/:id" component={ThankYou}/>
           <Route path="/libro/:bookId" render={(props) => <BookDetails {...props}/>}/>
-          <Route path="/buscar-libro" component={SearchBook}/>
+          <Route path="/buscar-libro" render={({}) => <SearchBook handleTagSelection={(tags)=>handleTagSelection(tags)}/>} />
         </Switch>
       </section>
 
       <section className={`section_1-2 section-fixed book-list-container ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
-        <BookList/>
+      
+      <BookList selectedTags={selectedTags}/>
+      
       </section>
 
       {/* <Footer/> */}

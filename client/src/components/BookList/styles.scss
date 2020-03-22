@@ -6,57 +6,70 @@
     display: flex;
     justify-content: center;
     
-.book-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-
-    li {
-        height: 94vh;
+    .book-list {
         display: flex;
-        align-items: flex-end;
-        
-        a {
+        flex-wrap: wrap;
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+
+        li {
+            height: 94vh;
             display: flex;
             align-items: flex-end;
-            height: 100%;
-            margin: $m3 0 $m4;
-
-            div {
-                background-color: $main_color;
-                color: $bg_color;
-                border: 1px solid $bg_color;
-                text-transform: uppercase;
-                position: relative;
+            
+            a {
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-family: $ff_title;
-                padding: $m5 0;
-                transition: background-color ease-in .1s;
-                cursor: pointer;
-    
-                &:hover {
-                    background-color: lighten($main_color, 10)
+                align-items: flex-end;
+                height: 100%;
+                margin: $m3 0 $m4;
+
+                div {
+                    background-color: $main_color;
+                    color: $bg_color;
+                    border: 1px solid $bg_color;
+                    text-transform: uppercase;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-family: $ff_title;
+                    padding: $m5 0;
+                    transition: background-color ease-in .1s;
+                    cursor: pointer;
+        
+                    &:hover {
+                        background-color: lighten($main_color, 10)
+                    }
+        
+                    span {
+                        letter-spacing: 0.015em;
+                    }
                 }
-    
-                span {
-                    letter-spacing: 0.015em;
+            }
+
+            &.picked-book div {
+                background-color: $bg_color;
+
+                &:hover {
+                    background-color: $bg_color;
                 }
             }
         }
+        
+        &.search-mode {
 
-        &.picked-book div {
-            background-color: $bg_color;
+            li  {
+                div {
+                    background-color: transparentize($main_color, .8);
+                }
 
-            &:hover {
-                background-color: $bg_color;
+                &.selected-by-tag  div{
+                    background-color: $main_color
+                }
             }
         }
     }
-}
 
 }

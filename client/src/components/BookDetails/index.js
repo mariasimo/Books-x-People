@@ -23,7 +23,17 @@ const BookDetails = ({match}) => {
                             <p>Recomendado por <span className="b">{book.recommendedBy}</span></p>
                             <h1 className="title t1">{book.name}</h1>
                             <h2 className="title t3">{book.author}</h2>
-                            <TagList tags={book.tags}/>                            <p>{book.comment}</p>
+                           
+                            <div className="tags-group">
+                                {book.tags.map((tag,idx) => (
+                                    <Link key={tag.id} to="/buscar-libro">
+                                        <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`}/>
+                                        <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
+                                    </Link>
+                                ))}
+                            </div>
+
+                            <p>{book.comment}</p>
                             <div className="go-back">
                                 <Link to="/" className="btn-line">Devolver a la estantería</Link>
                             </div>

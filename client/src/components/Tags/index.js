@@ -1,18 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
 import './styles.scss';
 
+// Hacer que esto sean inputs, y que haya un f
+const TagList = ({tags, handleTagSelection}) => {
+    const [tagList, setTagList] = useState(tags)
 
-const TagList = ({tags}) => {
+    useEffect(() => {
+        setTagList(tags)
+    });
+
+    const checkTag = (e) => {
+        tags.forEach(tag => {
+            if (tag.name === e.target.value) {
+                tag.isChecked = e.target.checked;
+            }
+        })
+        let filteredTags=tags.filter(tag => tag.isChecked === true)
+        setTagList(filteredTags)
+        return (handleTagSelection) && handleTagSelection(filteredTags.map(tag => tag.id))
+    }
+    
     return (
-        tags &&
+        tagList &&
             <div className="tags-group">
-              {tags.map(tag => (
-                 <Link to={`/buscar-libro/?tag=${tag.id}`} key={tag.id}>
-                    <span className="tag">{tag.name}</span>
-                 </Link>
+              {tagList.map((tag,idx) => (
+                    <a key={tag.id}>
+                        <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`}  onClick={(e)=>checkTag(e)}/>
+                        <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
+                    </a>
                 ))}
-        </div>        
+            </div>        
     )
 }
 

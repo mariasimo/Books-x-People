@@ -10,6 +10,10 @@ const GET_BOOKS = gql`
         author
         width
         height
+        tags{
+            name
+            id
+        }
     }
 }
 `
@@ -46,7 +50,7 @@ mutation(
         height: $height,
         tags: $tags
     ){
-        recommendedBy
+        id
     }
 }
 `

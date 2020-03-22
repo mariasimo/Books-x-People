@@ -27,7 +27,7 @@
             }
         }
 
-        fieldset.tags-group {
+        fieldset {
             border: none;
             padding: 0;
 
@@ -39,6 +39,16 @@
                 display: inline-flex;
                 border: 1px solid transparentize($bg_color, .4);
 
+                &:hover {
+                    background-color: transparentize(white, .7);
+                    box-shadow: 0 0 6px transparentize($bg_color, .7);
+                }
+                &.is-checked {
+                    background-color: transparentize(white, .7);
+                    box-shadow: 0 0 6px transparentize($bg_color, .7);
+                    color: $bg_color;
+                    font-weight: 700;
+                }
             }
         }
 
