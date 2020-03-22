@@ -33,6 +33,7 @@ mutation(
     $published: Boolean!,
     $width: String!,
     $height: String!,
+    $tags: [ID!]!
     ){
     addBook(
         name:$name, 
@@ -42,7 +43,8 @@ mutation(
         moderated: $moderated,
         published: $published,
         width: $width,
-        height: $height
+        height: $height,
+        tags: $tags
     ){
         recommendedBy
     }

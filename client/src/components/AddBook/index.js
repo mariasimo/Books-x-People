@@ -30,6 +30,9 @@ const AddBook = ({history}) => {
                 tag.isChecked =  e.target.checked
             })
             setState({...state, tags:tags})
+
+            const tagsSelected = state.tags.filter(tag=>tag.isChecked==true).map(tag => tag.id)
+            console.log(tagsSelected)
     }
     
     
@@ -62,7 +65,8 @@ const AddBook = ({history}) => {
                 published: false,
                 width: bookSize.width,
                 height: bookSize.height,
-                tags: tags
+                tags:  ["5e7658b0843f140c7c69e6ed", "5e7658a6843f140c7c69e6ec"]
+
             },
             refetchQueries:[{query:GET_BOOKS}]
         }) 
@@ -77,8 +81,8 @@ const AddBook = ({history}) => {
             return (
                 // Refactorizat y converit en un componente
                 <>
-                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} className="tag" onClick={(e)=>checkTag(e)}/>
-                    <label htmlFor={`tag-${idx}`} className={tag.isChecked ? 'is-checked' : ''}>{tag.name}</label>
+                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} onClick={(e)=>checkTag(e)}/>
+                    <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
                 </>
             )
         })

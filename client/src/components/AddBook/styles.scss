@@ -31,30 +31,13 @@
             border: none;
             padding: 0;
 
-            .tag{
+            input[type="checkbox"]{
                 display: none
             }
 
-            label {
-                border: 1px solid transparentize($bg_color, .4);
-                border-radius: $m7;
-                padding: $m7 $m6;
+            .tag {
                 display: inline-flex;
-                margin: $m6 $m6 0 0;
-                text-transform: uppercase;
-                font-size: $f6;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all ease-in .2s;
-
-                &:hover {
-                    background-color: transparentize(white, .7);
-                    box-shadow: 0 0 6px transparentize($bg_color, .7);
-                }
-                &.is-checked {
-                    background-color: transparentize(white, .4);
-                    border: 1px solid transparentize($bg_color, .2);
-                }
+                border: 1px solid transparentize($bg_color, .4);
 
             }
         }

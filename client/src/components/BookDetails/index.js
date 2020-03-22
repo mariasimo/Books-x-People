@@ -12,7 +12,7 @@ const BookDetails = ({match}) => {
     // Anidar una desestructuración aqui para extraer directamente books?
     const { loading, error, data } = useQuery(GET_BOOK_DETAILS, { variables: {id:match.params.bookId}})
     const book = data && data.book;
-    console.log(data)
+
     return (
         <div className="book-details page">
             {!error
@@ -22,7 +22,14 @@ const BookDetails = ({match}) => {
                             <p>Recomendado por <span className="b">{book.recommendedBy}</span></p>
                             <h1 className="title t1">{book.name}</h1>
                             <h2 className="title t3">{book.author}</h2>
-                            {book.tags && book.tags.map(tag => tag.name)}
+                           
+                            {book.tags &&
+                            <div className="tags-group">
+                              {book.tags.map(tag => (
+                                 <span className="tag">{tag.name}</span>
+                                ))}
+                            </div>}
+
                             <p>{book.comment}</p>
                             <div className="go-back">
                                 <Link to="/" className="btn-line">Devolver a la estantería</Link>
