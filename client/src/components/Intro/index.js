@@ -4,7 +4,7 @@ import './styles.scss';
 
 const Intro = () => {
     return (
-      <div className="container intro">
+      <div className="intro">
           <h1 className="title t1">Books x People</h1>
           <div className="content">
             <p>Cuando leemos,  escuchamos nuestros pensamientos en palabras de otros. Nos inspiramos, nos sentimos acompañados y hacemos viajes de interior.</p>

@@ -1,6 +1,8 @@
 @import '../../globalStyles/variables.scss';
 
 .intro {
+    padding: 0 $m3;
+    
     .title {
         max-width: 32rem;
         margin-bottom: $m3;

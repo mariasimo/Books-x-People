@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_BOOK, GET_BOOKS } from '../../queries'
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { ADD_BOOK, GET_BOOKS, GET_TAGS } from '../../queries'
 import './styles.scss'
 
 const AddBook = ({history}) => {
     const [addBook, {loading: addBookLoading}] = useMutation(ADD_BOOK)
+    const { loading, error, data } = useQuery(GET_TAGS)
     
     const  [state, setState] = useState({
         name: "",
@@ -18,17 +19,19 @@ const AddBook = ({history}) => {
     const randomHeight = () => Math.floor(Math.random() * (95 - 80)) + 80 + '%'; 
     const randomWidth = () => Math.floor(Math.random() * (3.75- 1.75)) + 1.75 + "em"; 
 
+    const shuffle = (o) => {
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    }
+
+    const addBookSize = () => ({
+        width: randomWidth(),
+        height: randomHeight(),
+    })
 
     const handleSubmit = (e) => {
-        const addBookSize = () => ({
-            width: randomWidth(),
-            height: randomHeight(),
-        })
-
-        
-        const bookSize = addBookSize()
-
         e.preventDefault()
+        const bookSize = addBookSize()
         addBook({
             variables: {
                 author: state.author,
@@ -49,8 +52,19 @@ const AddBook = ({history}) => {
         })
     }
 
+    const displayTags = () => {
+        return data && (shuffle(data.tags).slice(0,6).map((tag, idx) => {
+            return (
+                < >
+                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} className="tag"/>
+                    <label for={`tag-${idx}`}>{tag.name}</label>
+                </>
+            )
+        }))
+    }
+
     return (
-        <div className="add-book container page">
+        <div className="add-book page">
             <form id="add-book" className="content" onSubmit={(e) => handleSubmit(e)}>
                 <div className="field">
                     <label>Tu nombre:</label>
@@ -68,13 +82,21 @@ const AddBook = ({history}) => {
                 </div>
 
                 <div className="field">
+                    <fieldset className="tags-group">
+                        <legend>Este libro es perfecto para...</legend>
+                        {displayTags()}
+                    </fieldset>
+                    <input type="text" className="create-tag" placeholder="Añade tu propia etiqueta"/>
+                </div>
+
+                <div className="field">
                     <label>¿Por qué lo recomiendas?</label>
                     <textarea rows="5" onChange={(e) => setState({...state, comment:e.target.value})}/>
                 </div>
 
                 <div class="buttons">
-                <Link to="/" class="btn-line-black">Cancelar</Link>
-                <button class="btn-black">Añadir libro</button>
+                    <Link to="/" class="btn-line-black">Cancelar</Link>
+                    <button class="btn-black">Añadir libro</button>
                 </div>
             </form>
         </div>

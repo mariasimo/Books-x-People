@@ -16,9 +16,9 @@ const GET_BOOKS = gql`
 }
 `
 
-const GET_AUTHORS = gql`
+const GET_TAGS = gql`
 {
-    authors{
+    tags{
         name
         id
     }
@@ -74,8 +74,7 @@ const GET_BOOK_DETAILS=gql`
 
 export {
     GET_BOOKS,
-    GET_AUTHORS,
+    GET_TAGS,
     ADD_BOOK,
-    ADD_USER,
     GET_BOOK_DETAILS
 }

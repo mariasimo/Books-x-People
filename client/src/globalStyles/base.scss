@@ -1,6 +1,6 @@
 @import './variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Anton|Overpass+Mono:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton|Overpass+Mono:300,500,700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -36,18 +36,8 @@ main {
         height: 100vh;
         overflow: visible;
         overflow-y: scroll;
-        
-        .container{
-            @media(min-width: $bp_large){
-                height: 86vh;
-                width: 45vw;
-                position: fixed;
-            }
-        }
     }
     
-
-
     .page {
         display: flex;
         justify-content: center;    
@@ -144,6 +134,7 @@ p, ul {
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
+    font-weight: 500;
     padding: $m5 - 0.075;
     text-transform: uppercase;
     text-decoration: none;
@@ -191,3 +182,26 @@ p, ul {
         }
     }
 }
+::-webkit-input-placeholder {
+    font-size: $f5;
+    color: transparentize($bg_color, .4);
+    text-transform: uppercase;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    font-size: $f5;
+    color: transparentize($bg_color, .4);
+    text-transform: uppercase; ;
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    font-size: $f5;
+    color: transparentize($bg_color, .4);
+    text-transform: uppercase; ;
+ }
+ 
+ :-ms-input-placeholder {  
+    font-size: $f5;
+    color: transparentize($bg_color, .4);
+    text-transform: uppercase; ;
+ }

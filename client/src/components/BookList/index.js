@@ -30,7 +30,7 @@ const BookItem = ({name, author, recommendedBy, width, height, id}) => {
 }
     
 const BookList = () => {
-  
+    
     // Then we have to bind it to our component 
     // For that, we use useQuey
     const {loading, error, data} = useQuery(GET_BOOKS);
