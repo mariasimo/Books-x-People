@@ -8,13 +8,12 @@ import * as serviceWorker from './serviceWorker';
 // Apollo is our graphql client
 // A Graphql client is in charge of passing request
 // between client and server
-import ApolloClient from 'apollo-boost'
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 // Apollo client setup
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-
+  uri:process.env.REACT_APP_API_URL
 })
 
 // Apollo provider allow us to get the data from the data client endpooint

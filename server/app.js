@@ -5,7 +5,7 @@ const mongoose  = require('mongoose')
 const cors      = require('cors');
 
 //Connect to db 
-mongoose.connect(process.env.DBLOCAL,
+mongoose.connect(process.env.DBSTR,
 { useUnifiedTopology: true,
     useNewUrlParser: true 
 })
@@ -37,5 +37,9 @@ app.use('/graphql', graphqlHTTP({
     schema,
     graphiql:true
 }))
+
+app.use((req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`))
