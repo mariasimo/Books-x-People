@@ -39,7 +39,7 @@ const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tag
     )
 }
     
-const BookList = ({selectedTags, queryTag}) => {
+const BookList = ({selectedTags, queryTag, pathname}) => {
     const [selected, setSelected] = useState(null)
 
     const {loading, error, data} = useQuery(GET_BOOKS);
@@ -49,7 +49,7 @@ const BookList = ({selectedTags, queryTag}) => {
         !error
             ?  !loading 
                 ? books && (
-                    <ul className={`book-list ${(selectedTags.length || queryTag) ? 'search-mode' : ''}`}>
+                    <ul className={`book-list ${((selectedTags.length || queryTag) && pathname.includes('/buscar-libro')) ? 'search-mode' : ''}`}>
                         {books.map( book => (   
                             <BookItem 
                                 {...book} 

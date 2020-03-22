@@ -39,7 +39,7 @@ function App({location}) {
 
       <section className={`section_1-2 section-fixed book-list-container ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
       
-      <BookList selectedTags={selectedTags} queryTag={queryTagObject.tag}/>
+      <BookList selectedTags={selectedTags} queryTag={queryTagObject.tag} {...location}/>
       
       </section>
 
