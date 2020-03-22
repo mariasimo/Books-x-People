@@ -1,20 +1,38 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { ADD_BOOK, GET_BOOKS, GET_TAGS } from '../../queries'
 import './styles.scss'
 
 const AddBook = ({history}) => {
-    const [addBook, {loading: addBookLoading}] = useMutation(ADD_BOOK)
-    const { loading, error, data } = useQuery(GET_TAGS)
+    const [addBook] = useMutation(ADD_BOOK)
+    const {data} = useQuery(GET_TAGS)
     
     const  [state, setState] = useState({
         name: "",
         author: "",
         comment: "",
-        recommendedBy: ""
+        recommendedBy: "",
+        tags: []
     })
+   
+    useEffect(() => {
+        if(data && data.tags){
+            let tags = shuffle(data.tags).slice(0,6).map(tag => tag = {...tag, isChecked: false})
+            setState({...state, tags:tags})
+        } 
+    }, [data]);
 
+    const checkTag = (e) => {
+        const {tags} = state;
+        tags.forEach(tag => {
+            if (tag.name === e.target.value)
+                tag.isChecked =  e.target.checked
+            })
+            setState({...state, tags:tags})
+    }
+    
+    
     // Random book size
     const randomHeight = () => Math.floor(Math.random() * (95 - 80)) + 80 + '%'; 
     const randomWidth = () => Math.floor(Math.random() * (3.75- 1.75)) + 1.75 + "em"; 
@@ -32,6 +50,8 @@ const AddBook = ({history}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const bookSize = addBookSize()
+        const tags = state.tags.filter(tag=>tag.isChecked==true).map(tag => tag.id)
+        console.log(tags)
         addBook({
             variables: {
                 author: state.author,
@@ -41,26 +61,27 @@ const AddBook = ({history}) => {
                 moderated: false,
                 published: false,
                 width: bookSize.width,
-                height: bookSize.height
+                height: bookSize.height,
+                tags: tags
             },
             refetchQueries:[{query:GET_BOOKS}]
         }) 
         .then(bookSubmitted => {
-            console.log(bookSubmitted)
             const {id} = bookSubmitted.data.addBook
             history.push(`/gracias/${id}`)
         })
     }
 
     const displayTags = () => {
-        return data && (shuffle(data.tags).slice(0,6).map((tag, idx) => {
+        return state.tags.map((tag, idx) => {
             return (
-                < >
-                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} className="tag"/>
-                    <label for={`tag-${idx}`}>{tag.name}</label>
+                // Refactorizat y converit en un componente
+                <>
+                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`} className="tag" onClick={(e)=>checkTag(e)}/>
+                    <label htmlFor={`tag-${idx}`} className={tag.isChecked ? 'is-checked' : ''}>{tag.name}</label>
                 </>
             )
-        }))
+        })
     }
 
     return (
@@ -94,9 +115,9 @@ const AddBook = ({history}) => {
                     <textarea rows="5" onChange={(e) => setState({...state, comment:e.target.value})}/>
                 </div>
 
-                <div class="buttons">
-                    <Link to="/" class="btn-line-black">Cancelar</Link>
-                    <button class="btn-black">Añadir libro</button>
+                <div className="buttons">
+                    <Link to="/" className="btn-line-black">Cancelar</Link>
+                    <button className="btn-black">Añadir libro</button>
                 </div>
             </form>
         </div>

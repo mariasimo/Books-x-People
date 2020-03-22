@@ -51,6 +51,11 @@
                     background-color: transparentize(white, .7);
                     box-shadow: 0 0 6px transparentize($bg_color, .7);
                 }
+                &.is-checked {
+                    background-color: transparentize(white, .4);
+                    border: 1px solid transparentize($bg_color, .2);
+                }
+
             }
         }
 

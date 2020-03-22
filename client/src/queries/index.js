@@ -8,8 +8,6 @@ const GET_BOOKS = gql`
         name
         id
         author
-        comment
-        recommendedBy
         width
         height
     }
@@ -50,16 +48,6 @@ mutation(
     }
 }
 `
-
-const ADD_USER=gql`
-mutation($name:String!){
-    addUser(name:$name){
-        name
-        id
-    }
-}
-`
-
 const GET_BOOK_DETAILS=gql`
     query($id:ID){
         book(id:$id){
@@ -68,6 +56,9 @@ const GET_BOOK_DETAILS=gql`
             comment
             author
             recommendedBy
+            tags {
+                name
+            }
         }
     }
 `

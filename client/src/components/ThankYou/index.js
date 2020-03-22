@@ -16,7 +16,7 @@ const ThankYou = () => {
                 <SocialSharing/> 
                 
                 <div className="go-back">
-                    <Link to="/" class="btn-line">Volver</Link>
+                    <Link to="/" className="btn-line">Volver</Link>
                 </div>
             </div>
         </div>

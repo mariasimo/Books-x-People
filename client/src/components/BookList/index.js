@@ -18,7 +18,6 @@ const BookItem = (props) => {
     const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
     const fontSize = width.replace('em', '')* factor + 'em';
 
-    console.log(pickedBook, id)
     return (
         <li onClick={getSelected} className={(pickedBook === id) ? 'picked-book' : ""}>
             <Link to={`/libro/${recommendedBy}/${id}`}>
@@ -37,13 +36,11 @@ const BookList = () => {
     // Then we have to bind it to our component 
     // For that, we use useQuey
     const {loading, error, data} = useQuery(GET_BOOKS);
-    
     if(error) return <ErrorMessage/>
     if(loading) return <Loading/>
     
     // If theres no error and no loading, we get the books from data
     const { books } = data
-    console.log(books)
     return (
         <ul className="book-list">
             {books.map( book => (   
