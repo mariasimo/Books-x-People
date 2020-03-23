@@ -1,4 +1,4 @@
-#Books x People
+# Books x People
 
 Books x People is a little app where users can **add their book recomendations so others can read and discover** new things, specially during COVID-19 quarantine.
 
@@ -10,7 +10,7 @@ Initially, i was a code along this GraphQL + React tutorial from @iamshaunjp. So
 
 📁 
 
-####Download the project 
+#### Download the project 
 
 ```
 git clone https://github.com/mariasimo/Books-x-People
@@ -20,7 +20,7 @@ git clone https://github.com/mariasimo/Books-x-People
 
 ⚙️ 
 
-####Config the project
+#### Config the project
 
 Project is divided in two main folders. Client and Server.
 
@@ -50,7 +50,7 @@ REACT_APP_URL=http://localhost:3000
 
 🚀
 
-####Run the project
+#### Run the project
 
 First, start the ***\*server\**** with one of these commands:
 
@@ -88,7 +88,7 @@ Ta-da! Go visit http://localhost:3000
 
 ####✌🏽
 
-####Contributions and feedback
+#### Contributions and feedback
 
 This project  has been made for the purpose of learning. 
 
