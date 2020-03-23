@@ -41,7 +41,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
-
 const index = require('./routes');
 app.use('/api', index);
 

@@ -8,8 +8,8 @@ const mailTemplate = require('../mailTemplate');
 var transport = {
   host: 'smtp.gmail.com',
   auth: {
-    user:process.env.MAILUSER,
-    pass:process.env.MAILPASS
+    user:"booksxpeople@gmail.com",
+    pass:"26Pamplinas!"
   }
 }
 
