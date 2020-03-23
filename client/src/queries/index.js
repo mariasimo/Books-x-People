@@ -78,9 +78,22 @@ const GET_BOOK_DETAILS=gql`
     }
 `
 
+const APPROVE_BOOK=gql`
+mutation(
+    $id:ID!
+    ){
+    approveBook(
+        id:$id
+    ){
+        id
+    }
+}
+`
+
 export {
     GET_BOOKS,
     GET_TAGS,
     ADD_BOOK,
-    GET_BOOK_DETAILS
+    GET_BOOK_DETAILS,
+    APPROVE_BOOK
 }

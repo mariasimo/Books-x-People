@@ -131,6 +131,21 @@ const Mutations = new GraphQLObjectType({
         });
         return Tag.create(tag)
       } 
+    },
+    approveBook: {
+      type: BookType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) }
+      },
+
+      resolve(_, args){
+        let book = Book.findByIdAndUpdate(args.id, {
+          moderated:true,
+          published:true
+        }, {new:true});
+       
+        return book;
+      }
     }
 
   }

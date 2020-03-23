@@ -4,16 +4,23 @@ import { Link } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage'
 import './styles.scss';
 
-import { GET_BOOK_DETAILS } from '../../queries'
-import { useQuery } from '@apollo/react-hooks';
+import { GET_BOOK_DETAILS, APPROVE_BOOK, GET_BOOKS } from '../../queries'
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 
 const PublishBook = ({match}) => {
+    const [approveBook] = useMutation(APPROVE_BOOK)
     const { loading, error, data } = useQuery(GET_BOOK_DETAILS, { variables: {id:match.params.bookId}})
     const book = data && data.book;
 
     const approveThis = bookId => {
         console.log(bookId)
+        approveBook({
+            variables: {
+                id: match.params.bookId,
+            },
+            refetchQueries:[{query:GET_BOOKS}]
+        }) 
     }
     
     return (
