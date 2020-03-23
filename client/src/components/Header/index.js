@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import './styles.scss'
 
 const Header = () => {
-    console.log(process.env)
     return (
         <header>
             <img src={`${process.env.REACT_APP_URL}/book-icon.svg`} alt="Book icon"/>

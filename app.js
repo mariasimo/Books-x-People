@@ -4,6 +4,7 @@ const express   = require('express')
 const schema    = require('./schema/schema')
 const mongoose  = require('mongoose')
 const cors      = require('cors');
+const bodyParser   = require('body-parser');
 
 //Connect to db 
 mongoose.connect(process.env.DBSTR,
@@ -14,6 +15,9 @@ mongoose.connection.once('open', () => {
     console.log('Connected to database')
 })
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Express-graphQL es un modulo permite a express entender graphql
 // Provee un método sencillo de montar un servidor 
 // express que corra la api de graphql
@@ -23,11 +27,9 @@ mongoose.connection.once('open', () => {
 // Cuando usamos graphql tenemos un único super endpoint
 // al que mandamos todos los queries de graphQL
 const graphqlHTTP = require('express-graphql')
-
 const app = express();
 
 app.use(cors());
-
 
 // Cuando alguien haga una petición a esta ruta, cedemos el control del request a express graphql
 // Para ello, usamos la fn graphqlHTTP(). Este middleware debe tener como parámetro un schema, que 
@@ -39,11 +41,12 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
-app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`))
-
+const index = require('./routes');
+app.use('/api', index);
 
 // Config Heroku
 app.use(favicon(path.join(__dirname, 'public', 'favicon.svg')));
 app.use((req, res) => {res.sendFile(__dirname + "/public/index.html")});
 
+app.listen(process.env.PORT, () => console.log(`Listening on ${process.env}`))
 module.exports = app;

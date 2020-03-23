@@ -51,6 +51,14 @@ mutation(
         tags: $tags
     ){
         id
+        name
+        comment
+        author
+        recommendedBy
+        tags{
+            name
+            id
+        }
     }
 }
 `

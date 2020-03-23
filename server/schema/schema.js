@@ -36,7 +36,6 @@ const BookType = new GraphQLObjectType({
     tags: {
       type: new GraphQLList(TagType),
       resolve(parent, args){
-        console.log(parent, args)
         return Tag.find()
         .then(tags => tags.filter(tag => parent.tags.includes(tag.id)))
       }

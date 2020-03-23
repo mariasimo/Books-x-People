@@ -4,6 +4,9 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { ADD_BOOK, GET_BOOKS, GET_TAGS } from '../../queries'
 import './styles.scss'
 import TagList from '../Tags';
+import {shuffle,randomWidth,randomHeight} from '../../utils'
+
+import axios from 'axios';
 
 const AddBook = ({history}) => {
     const [addBook] = useMutation(ADD_BOOK)
@@ -24,16 +27,6 @@ const AddBook = ({history}) => {
         } 
     }, [data]);
 
-    
-    // Random book size
-    const randomHeight = () => Math.floor(Math.random() * (95 - 80)) + 80 + '%'; 
-    const randomWidth = () => Math.floor(Math.random() * (3.75- 1.75)) + 1.75 + "em"; 
-
-    const shuffle = (o) => {
-        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
-    }
-
     const addBookSize = () => ({
         width: randomWidth(),
         height: randomHeight(),
@@ -43,7 +36,6 @@ const AddBook = ({history}) => {
         e.preventDefault()
         const bookSize = addBookSize()
         const tags = state.tags.filter(tag=>tag.isChecked==true).map(tag => tag.id)
-        console.log(tags)
         addBook({
             variables: {
                 author: state.author,
@@ -60,10 +52,15 @@ const AddBook = ({history}) => {
             refetchQueries:[{query:GET_BOOKS}]
         }) 
         .then(bookSubmitted => {
-            console.log(bookSubmitted)
+            sendMail(bookSubmitted.data.addBook)
             const {id} = bookSubmitted.data.addBook
             history.push(`/gracias/${id}`)
         })
+    }
+
+    const sendMail = mailData => {
+        console.log(mailData)
+        return axios.post(`${process.env.REACT_APP_API_URL}/send-mail`, mailData)
     }
 
     return (

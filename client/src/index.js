@@ -13,7 +13,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 // Apollo client setup
 const client = new ApolloClient({
-  uri:process.env.REACT_APP_API_URL
+  uri:process.env.REACT_APP_GRAPHQL_URL
 })
 
 // Apollo provider allow us to get the data from the data client endpooint
