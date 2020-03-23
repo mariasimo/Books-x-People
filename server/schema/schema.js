@@ -72,7 +72,7 @@ const RootQuery = new GraphQLObjectType({
         // Cuando quiera trabajar con arrays tengo que usar GraphQLList
         type: new GraphQLList(BookType),
         resolve(parent, args){
-            return Book.find()
+            return Book.find({moderated: true})
         }
     },
     tags: {
