@@ -55,11 +55,23 @@
         .buttons {
             padding:0 $m6;
             display: flex; 
-            justify-content: flex-end;
             align-items: center;
+
+            > a, > button {
+                width: 50%;
+                text-align: center;
+            }
 
             > *:first-child{
                 margin-right: $m6;
+            }
+
+            @media(min-width: $bp-small){
+                justify-content: flex-end;
+
+                > a , > button{
+                    width: auto;
+                }
             }
         }
     }

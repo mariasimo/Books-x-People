@@ -44,21 +44,25 @@ main {
         display: flex;
         justify-content: center;    
         align-items: center; 
-        margin-left: $m3;
+
+        @media(min-width: $bp_small){
+            margin-left: $m3;
+        }
 
         .content {
-            width: 85%;
-            padding: $m4;
+            width: 100%;
+            padding: $m4 $m5;
+            max-width: 48rem;
                         
-            @media(max-width: $bp_large){
+            @media(min-width: $bp_small){
                 margin-left: 3rem;
-                width: 100%;
+                padding: $m4;
             }
         }
     }
 
     .header-layout {
-        @media(max-width: $bp_large){
+        @media(min-width: $bp_small){
             margin-left: $m2
         }  
     }
