@@ -2,7 +2,7 @@
 
 Books x People is a little app where users can **add their book recomendations so others can read and discover** new things, specially during COVID-19 quarantine.
 
-Its quite simple. It has a add book and search book by tags functionality. It also has a detail view for each book, while the main booklist view looks like a bookshelf.
+It's quite simple, really. It has an add book and a search book by tags functionality. It also has a detail view for each book, while the main booklist view looks like a bookshelf.
 
 Initially, this was a code-along of [this GraphQL + React tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f) from @iamshaunjp. So thanks for the inspiration!
 
