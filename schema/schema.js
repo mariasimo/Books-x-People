@@ -1,9 +1,11 @@
 // aqui definimos nuestro schema, que describe la estructura y tipo de nuestros datos
 // los object types, sus relaciones y como podemos interactuar con los datos
 const graphql = require('graphql');
+const graphqlIsoDate = require('graphql-iso-date');
 
 const Book = require('../models/Book.model')
 const Tag = require('../models/Tag.model')
+
 
 // tenemos dos object types, books and authors
 const { 
@@ -16,6 +18,11 @@ const {
     GraphQLList
 } = graphql;
 
+const {
+  GraphQLDate,
+  GraphQLTime,
+  GraphQLDateTime
+} = graphqlIsoDate
 
 // Cada tipo es una nueva instancia de GraphQLObjectType
 // Es una función que toma como parámetro un objecto, que define la estructura
@@ -33,6 +40,11 @@ const BookType = new GraphQLObjectType({
     published: {type: GraphQLBoolean},
     height: {type: GraphQLString},
     width: {type: GraphQLString},
+    createdAt: {
+      type: GraphQLDateTime,
+      //resolver can take a Date or date string.
+      resolve: (parent, args) => new Date(parent.createdAt)
+    },
     tags: {
       type: new GraphQLList(TagType),
       resolve(parent, args){

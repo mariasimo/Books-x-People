@@ -14,12 +14,11 @@ const PublishBook = ({match}) => {
     const book = data && data.book;
 
     const approveThis = bookId => {
-        console.log(bookId)
         approveBook({
             variables: {
                 id: match.params.bookId,
             },
-            refetchQueries:[{query:GET_BOOKS}]
+            refetchQueries:[{query:GET_BOOKS},{query:GET_BOOK_DETAILS}]
         }) 
     }
     
@@ -44,6 +43,8 @@ const PublishBook = ({match}) => {
 
                         <p>Este libro espera moderación para ser publicado en Books x People</p>
                         <button className="btn" onClick={() => approveThis(book.id)}>Aprobar este libro</button>
+
+                        {book.published && <p className="b">Libro incluido en la estantería, ¡gracias!</p>}
                     </div>
                 )
                 : <Loading/>

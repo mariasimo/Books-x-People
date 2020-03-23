@@ -11,7 +11,9 @@ const bookSchema = new Schema({
     height: String,
     width: String,
     tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}]
-})
+}
+, {timestamps: true} 
+)
 
 module.exports = mongoose.model('Book', bookSchema)
 

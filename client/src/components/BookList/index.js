@@ -50,7 +50,7 @@ const BookList = ({selectedTags, queryTag, pathname}) => {
             ?  !loading 
                 ? books && (
                     <ul className={`book-list ${((selectedTags.length || queryTag) && pathname.includes('/buscar-libro')) ? 'search-mode' : ''}`}>
-                        {books.map( book => (   
+                        {books.sort((a,b) => b.createdAt.localeCompare(a.createdAt)).map( book => (   
                             <BookItem 
                                 {...book} 
                                 key={book.id} 

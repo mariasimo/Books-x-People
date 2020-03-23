@@ -10,6 +10,7 @@ const GET_BOOKS = gql`
         author
         width
         height
+        createdAt
         tags{
             name
             id
@@ -70,6 +71,7 @@ const GET_BOOK_DETAILS=gql`
             comment
             author
             recommendedBy
+            published
             tags {
                 name
                 id
