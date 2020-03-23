@@ -90,7 +90,7 @@ Ta-da! Go visit http://localhost:3000
 
 #### Contributions and feedback
 
-This project  has been made for the purpose of learning. 
+This project is made for the only purpose of learning. 
 
 As next implementations, I intend to add animated transitions to pages, add redux, new features with tags and unit testing.
 
