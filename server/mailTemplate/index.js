@@ -18,7 +18,7 @@ module.exports = {
                 <p>Tags: ${tags}</p>
                 <p>Recommended by ${book.recommendedBy}</p>
     
-                <a href="https://booksxpeople.herokuapp.com/approved/${book.id}">Ok, publish it!</a></p>
+                <a href="http://localhost:3000/approved/${book.id}">Ok, publish it!</a></p>
                 <p>Best!</p>
             </div>
         </body>

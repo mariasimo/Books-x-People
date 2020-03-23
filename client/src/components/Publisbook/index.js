@@ -1,0 +1,49 @@
+import React from 'react';
+import Loading from '../Loading'
+import { Link } from 'react-router-dom';
+import ErrorMessage from '../ErrorMessage'
+import './styles.scss';
+
+import { GET_BOOK_DETAILS } from '../../queries'
+import { useQuery } from '@apollo/react-hooks';
+
+
+const PublishBook = ({match}) => {
+    const { loading, error, data } = useQuery(GET_BOOK_DETAILS, { variables: {id:match.params.bookId}})
+    const book = data && data.book;
+
+    const approveThis = bookId => {
+        console.log(bookId)
+    }
+    
+    return (
+        <div className="book-details page">
+        {!error
+            ?  !loading 
+                ? book && (
+                    <div className="content">
+                        <p>Alguien ha recomendado un nuevo libro</p>
+                        <h1 className="title t1">{book.name}</h1>
+                        <h2 className="title t3">{book.author}</h2>
+                       
+                        <div className="tags-group">
+                            {book.tags.map((tag,idx) => (
+                                <Link key={tag.id} to={`/buscar-libro/filtrar?tag=${tag.id}`}>
+                                    <input type="checkbox" name={tag.name} value={tag.name} id={`tag-${idx}`}/>
+                                    <label htmlFor={`tag-${idx}`} className={`tag ${tag.isChecked ? "is-checked" : ""}`}>{tag.name}</label>
+                                </Link>
+                            ))}
+                        </div>
+
+                        <p>Este libro espera moderación para ser publicado en Books x People</p>
+                        <button className="btn" onClick={() => approveThis(book.id)}>Aprobar este libro</button>
+                    </div>
+                )
+                : <Loading/>
+            : <ErrorMessage/>
+        }
+    </div>
+    )
+}
+
+export default PublishBook
