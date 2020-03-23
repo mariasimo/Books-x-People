@@ -41,12 +41,14 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 const index = require('./routes');
 app.use('/api', index);
   
-app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`))
-
-app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
+
+
+module.exports=app
