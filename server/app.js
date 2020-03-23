@@ -50,7 +50,4 @@ app.use((req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
-  
+module.exports=app
