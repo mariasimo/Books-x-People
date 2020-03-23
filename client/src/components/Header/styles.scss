@@ -1,23 +1,56 @@
 @import '../../globalStyles/variables.scss';
 
 header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    border-right: 1px solid $main_color;
-    padding: $m3 $m4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
+    padding: $m4;
+    width:100%;
 
-    .title {
-        color: $main_color;
-        -webkit-text-fill-color:$bg_color; /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: 0.015rem;
-        -webkit-text-stroke-color:$main_color;
+    @media(min-width:$bp_small) {
+        width:auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        border-right: 1px solid $main_color;
+        height: 100vh; 
+        padding: $m3 $m4;
+
+        a {
+            height: 100%;
+            display: flex;
+        }
     }
+
+    .mobile {
+        justify-content: space-between;
+        width: 100%;
+        display: flex;
+    }
+
+    .desktop {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        
+        .title {
+            color: $main_color;
+            -webkit-text-fill-color:$bg_color; /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 0.015rem;
+            -webkit-text-stroke-color:$main_color;
+        }
+    }
+
+
+
+    @media(min-width:$bp_small) {
+        .desktop {
+            display: flex;
+        }
+
+        .mobile {
+            display: none;
+        }
+    }
+
 }
 
