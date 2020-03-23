@@ -13,7 +13,7 @@ const SearchBook = ({handleTagSelection, queryTag}) => {
     const { tags } = data;
      
     return (
-        <div className="search-book page">
+        <div className="search-books page">
             <div className="content">
             {!error
             ?  !loading 

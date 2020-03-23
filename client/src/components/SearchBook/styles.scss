@@ -1,9 +1,13 @@
 @import '../../globalStyles/variables.scss';
 
-.search-book {
-    h1 {
-        font-size: $f4;
-        text-transform: uppercase;
-        color: red;
+.search-books{
+
+    &.page .content {
+        max-width: 40rem;
+        
+        @media(max-width: $bp_small){
+            padding: 0;
+        }
     }
 }
+

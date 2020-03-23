@@ -62,7 +62,7 @@ main {
     }
 
     .header-layout {
-        @media(min-width: $bp_small){
+        @media(min-width: $bp_small) and (max-width: $bp_large){
             margin-left: $m2
         }  
     }
