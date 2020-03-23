@@ -1,0 +1,97 @@
+#Books x People
+
+Books x People is a little app where users can **add their book recomendations so others can read and discover** new things, specially during COVID-19 quarantine.
+
+Its quite simple. It has a add book and search book by tags functionality. It also has a detail view for each book, while the main booklist view looks like a bookshelf.
+
+Initially, i was a code along this GraphQL + React tutorial from @iamshaunjp. So, thanks for the inspiration!
+
+
+
+📁 
+
+####Download the project 
+
+```
+git clone https://github.com/mariasimo/Books-x-People
+```
+
+
+
+⚙️ 
+
+####Config the project
+
+Project is divided in two main folders. Client and Server.
+
+In order to start the project, you have to create a .env file at the server folder and write in it:
+
+```
+PORT=4000
+DBSTR=<string-to-cloud-db-here>
+DBLOCAL=<string-to-local-db-here>
+MAILUSER='<mail-password-for-nodemailer-transport>
+MAILPASS=<mail-password-for-nodemailer-transport>
+```
+
+**Note that you will need your own mail transport account in order to receive mails with the book submitted and moderate them as admin.*
+
+
+
+Then, go to **client** folder and create a .env.dev file:
+
+```
+REACT_APP_GRAPHQL_URL=http://localhost:4000/graphql
+REACT_APP_API_URL=http://localhost:4000/api
+REACT_APP_URL=http://localhost:3000
+```
+
+
+
+🚀
+
+####Run the project
+
+First, start the ***\*server\**** with one of these commands:
+
+```node app.js
+nodemon app.js
+```
+
+
+
+And then, start ***\*client\**** with command:
+
+```
+npm start
+```
+
+Ta-da! Go visit http://localhost:3000
+
+
+
+ 🏗
+
+#### Built with
+
+- GraphQL — https://graphql.org/
+- MongoDB & Mongoose — https://www.mongodb.com/
+- Node js — https://github.com/nodejs/node
+- Express — https://github.com/expressjs/express
+- Nodemailer — https://www.npmjs.com/package/nodemailer
+- React (create-react-app) — https://github.com/facebook/react
+- Apollo — https://www.apollographql.com
+- Sass — https://github.com/sass/node-sass
+-  Axios — https://github.com/axios/axios
+
+
+
+####✌🏽
+
+####Contributions and feedback
+
+This project  has been made for the purpose of learning. 
+
+As next implementations, I intend to add animated transitions to pages, add redux, new features with tags and unit testing.
+
+Please feel free to use this repo for your own evil plans. Any comments, feedback or contributions will be very much appreciated 
