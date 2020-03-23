@@ -33,9 +33,11 @@ main {
     }
 
     .section-fixed {
-        height: 100vh;
-        overflow: visible;
-        overflow-y: scroll;
+        @media(min-width: $bp_large){
+            height: 100vh;
+            overflow: visible;
+            overflow-y: scroll;        
+        }
     }
     
     .page {
@@ -110,12 +112,11 @@ p, ul {
 
 @mixin button($color, $bg) {
     background-color: $bg;
-    border: 2px solid $main_color;
     color: $color;
     cursor: pointer; 
     font-family: $ff_body;
     font-size: $f5;
-    padding: $m5;
+    padding: $m5 - 0.075rem;
     text-transform: uppercase;
     text-decoration: none;
     transition: all ease-in-out .3s;
@@ -135,7 +136,7 @@ p, ul {
     font-family: $ff_body;
     font-size: $f5;
     font-weight: 500;
-    padding: $m5 - 0.075;
+    padding: $m5;
     text-transform: uppercase;
     text-decoration: none;
     transition: all ease-in-out .3s;

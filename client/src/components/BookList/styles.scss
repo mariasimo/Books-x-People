@@ -4,7 +4,10 @@
 
 .book-list-container{
     display: flex;
-    justify-content: center;
+
+    @media(min-width: $bp_medium) {
+        justify-content: center;
+    }
     
     .book-list {
         display: flex;

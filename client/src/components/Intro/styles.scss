@@ -1,7 +1,10 @@
 @import '../../globalStyles/variables.scss';
 
 .intro {
-    padding: 0 $m3;
+
+    @media (min-width: $bp_medium) {
+        padding: 0 $m3;
+    } 
     
     .title {
         max-width: 32rem;
@@ -16,11 +19,18 @@
             margin-top: 0;
         }
     }
-    .cta .btn {
-        margin-bottom: $m5;
+    .cta {
+        display: flex;
+        flex-wrap: wrap;
 
-        @media(min-width: $bp_small) {
-            margin-right: $m4;
+        .btn, .btn-line {
+            margin-bottom: $m5;
+            display: inline-flex;
+            
+    
+            @media(min-width: $bp_x-small) {
+                margin-right: $m5;
+            }
         }
-    }
+    } 
 }
