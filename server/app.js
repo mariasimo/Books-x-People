@@ -18,6 +18,7 @@ mongoose.connection.once('open', () => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 // Express-graphQL es un modulo permite a express entender graphql
 // Provee un método sencillo de montar un servidor 
@@ -29,7 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // // al que mandamos todos los queries de graphQL
 const graphqlHTTP = require('express-graphql')
 
-app.use(cors());
 
 // Cuando alguien haga una petición a esta ruta, cedemos el control del request a express graphql
 // Para ello, usamos la fn graphqlHTTP(). Este middleware debe tener como parámetro un schema, que 
@@ -41,11 +41,10 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 const index = require('./routes');
 app.use('/api', index);
   
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
