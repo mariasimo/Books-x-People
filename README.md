@@ -86,7 +86,7 @@ Ta-da! Go visit http://localhost:3000
 
 
 
-####✌🏽
+✌🏽
 
 #### Contributions and feedback
 
