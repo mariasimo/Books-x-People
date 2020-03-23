@@ -41,11 +41,11 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true
 }))
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes');
 app.use('/api', index);
-  
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
