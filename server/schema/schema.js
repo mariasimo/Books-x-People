@@ -94,7 +94,7 @@ const RootQuery = new GraphQLObjectType({
     tags: {
       type: new GraphQLList(TagType),
       resolve(parent, args){
-          return Tag.find()
+          return Tag.find({published: true})
       }
     }
   }
