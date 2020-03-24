@@ -108,4 +108,14 @@ Please feel free to use this repo for your own evil plans. Any comments, feedbac
 
 - [x] Sharing options
 
+- [ ] Btn hover effect
+
+- [ ] Footer
+
+- [ ] Getting book from the shelf effect
+
+- [ ] Animate transitions between pages
+
+- [ ] Get width of book for the number of pages
+
   
