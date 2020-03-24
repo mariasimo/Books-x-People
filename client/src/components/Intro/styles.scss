@@ -19,18 +19,4 @@
             margin-top: 0;
         }
     }
-    .cta {
-        display: flex;
-        flex-wrap: wrap;
-
-        .btn, .btn-line {
-            margin-bottom: $m5;
-            display: inline-flex;
-            
-    
-            @media(min-width: $bp_x-small) {
-                margin-right: $m5;
-            }
-        }
-    } 
 }

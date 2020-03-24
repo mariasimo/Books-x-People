@@ -12,7 +12,7 @@ const Intro = () => {
             <p>Recomienda un libro para estos días en casa. <span className="b">#YoMeQuedoEnCasa</span></p>
           </div>
 
-          <div className="cta">
+          <div className="button-group">
             <Link to="/recomendar-libro" className="btn">Añadir un libro a la estantería</Link>
             <Link to="/buscar-libro" className="btn-line">Buscar libro</Link>
           </div>         

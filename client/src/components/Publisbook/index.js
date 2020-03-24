@@ -118,9 +118,11 @@ const PublishBook = ({history, match}) => {
 
                         </div>
                 
-                        <button className="btn-line" onClick={() => deleteThis(book.id, newTags)}>Borrar todo</button>
-                        <button className="btn" onClick={() => approveThis(book.id, newTags)}>Aprobar este libro</button>
-
+                        <div className="button-group">
+                            <button className="btn-line" onClick={() => deleteThis(book.id, newTags)}>Borrar todo</button>
+                            <button className="btn" onClick={() => approveThis(book.id, newTags)}>Aprobar este libro</button>
+                        </div>
+                        
                         {book.published && <p className="b">Libro incluido en la estantería, ¡gracias!</p>}
                     </div>
                 )

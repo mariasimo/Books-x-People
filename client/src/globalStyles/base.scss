@@ -118,6 +118,21 @@ p, ul {
     margin-top: $m7;
 }
 
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    .btn, .btn-line {
+        margin-bottom: $m5;
+        display: inline-flex;
+        
+
+        @media(min-width: $bp_x-small) {
+            margin-right: $m5;
+        }
+    }
+} 
+
 @mixin button($color, $bg) {
     background-color: $bg;
     color: $color;

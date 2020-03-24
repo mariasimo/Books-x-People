@@ -110,12 +110,14 @@ Please feel free to use this repo for your own evil plans. Any comments, feedbac
 
 - [ ] Btn hover effect
 
-- [ ] Footer
+- [x] Footer
 
 - [ ] Getting book from the shelf effect
 
 - [ ] Animate transitions between pages
 
 - [ ] Get width of book for the number of pages
+
+- [ ] Make user choose 2 or 3 tags at least
 
   
