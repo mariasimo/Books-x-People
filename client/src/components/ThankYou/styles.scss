@@ -8,7 +8,11 @@
     }
     .go-back {
         border-top: 1px dotted $main_color;
-        margin: $m4 -1*$m4 0;
+        margin: $m4 -1*$m5 0;
         padding: $m4 $m4 0;
+
+        @media(min-width: $bp_small){
+            margin: $m4 -1*$m4 0;
+        }
     }
 }

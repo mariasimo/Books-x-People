@@ -24,6 +24,7 @@ transporter.verify((error, success) => {
 });
 
 router.post('/send-mail', function (req, res) {
+  console.log(req.body.tags)
   const tags = req.body.tags.map(tag=>" "+tag.name).join(",")
   const book=req.body
 

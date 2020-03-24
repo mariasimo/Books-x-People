@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { ADD_BOOK, GET_BOOKS, GET_TAGS, ADD_TAG } from '../../queries'
 import './styles.scss'
 import TagList from '../Tags';
-import {shuffle,randomWidth,randomHeight} from '../../utils'
+import {shuffle,addBookSize} from '../../utils'
 
 import axios from 'axios';
 
@@ -35,11 +35,6 @@ const AddBook = ({history}) => {
         if(state.newTags.length) addNewBook(state.tags, state.newTags)
     }, [state])
 
-    const addBookSize = () => ({
-        width: randomWidth(),
-        height: randomHeight(),
-    })
-
     const handleNewTag = (e) => {    
         if (e.key === "Enter") {
             e.preventDefault()
@@ -48,6 +43,9 @@ const AddBook = ({history}) => {
                 isChecked: true
             }
             setState({...state, tags: [...state.tags, newTag]})
+
+            let newTagDOMEL = document.querySelector('.create-tag')
+            newTagDOMEL.value = " ";
         }
     }
 
@@ -61,12 +59,9 @@ const AddBook = ({history}) => {
 
     const addNewBook = (tags, newTags) => {
         const bookSize = addBookSize()
-
-        console.log(tags, newTags)
         let tagList = tags.filter(tag=> (tag.isChecked===true && tag.id !== undefined)).map(tag => tag.id)
         tagList.push(...newTags)
 
-        console.log(tagList)
         addBook({
             variables: {
                 author: state.author,
@@ -82,7 +77,6 @@ const AddBook = ({history}) => {
             refetchQueries:[{query:GET_BOOKS}]
         }) 
         .then(bookSubmitted => {
-            console.log(bookSubmitted)
             sendMail(bookSubmitted.data.addBook)
             const {id} = bookSubmitted.data.addBook
             history.push(`/gracias/${id}`)
@@ -93,7 +87,14 @@ const AddBook = ({history}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const tagsToAdd = state.tags.filter(tag => tag.id===undefined);
-        addNewTags(tagsToAdd)
+
+        if(tagsToAdd.length){
+            addNewTags(tagsToAdd)
+        } else {
+            addNewBook(state.tags, state.newTags)
+        }
+
+
     }
 
     const sendMail = mailData => {
