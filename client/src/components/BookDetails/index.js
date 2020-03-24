@@ -37,7 +37,7 @@ const BookDetails = ({match}) => {
                             <div className="go-back">
                                 <Link to="/" className="btn-line">Devolver a la estantería</Link>
                             </div>
-                            <SocialSharing/>
+                            <SocialSharing bookId={book.id} bookName={book.name}/>
                         </div>
                     )
                     : <Loading/>

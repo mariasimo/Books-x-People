@@ -106,6 +106,6 @@ Please feel free to use this repo for your own evil plans. Any comments, feedbac
 
 - [x] Being able to delete unwanted books and tags
 
-- [ ] Sharing options
+- [x] Sharing options
 
   

@@ -5,4 +5,19 @@
     justify-content: space-between;
     text-transform: uppercase;
     margin: $m3 0 0;
+
+    .whastapp-web{
+        display:none;
+    }
+
+    @media only screen and (min-width: $bp_medium) {
+        .whastapp-web{
+            display:inline-flex;
+        }
+    s
+        .whastapp-mobile{
+            display:none;
+        }
+    }
+
 }
