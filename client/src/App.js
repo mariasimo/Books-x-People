@@ -16,6 +16,7 @@ import BookDetails from './components/BookDetails'
 import SearchBook from './components/SearchBook';
 import PublishBook from './components/Publisbook';
 import BookConfirmation from './components/BookConfirmation';
+import Footer from './components/Footer'
 
 function App({location}) {
   const queryTagObject = queryString.parse(location.search);
@@ -41,14 +42,11 @@ function App({location}) {
         </Switch>
       </section>
 
-      <section className={`section_1-2 section-fixed book-list-container ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
-      
-      <BookList selectedTags={selectedTags} queryTag={queryTagObject.tag} {...location}/>
-      
-      </section>
+      <section className={`section_1-2 section-fixed ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
+        <BookList selectedTags={selectedTags} queryTag={queryTagObject.tag} {...location}/>    
+        <Footer/>
 
-      {/* <Footer/> */}
-      {/* <AddBook/> */}
+      </section>
     </main>
   );
 }

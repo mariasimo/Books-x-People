@@ -46,7 +46,8 @@ const BookList = ({selectedTags, queryTag, pathname}) => {
     let books = data && data.books;
     
     return (
-        !error
+        <div className="book-list-container">
+            {!error
             ?  !loading 
                 ? books && (
                     <ul className={`book-list ${((selectedTags.length || queryTag) && pathname.includes('/buscar-libro')) ? 'search-mode' : ''}`}>
@@ -64,7 +65,8 @@ const BookList = ({selectedTags, queryTag, pathname}) => {
                     </ul>
                 )
                 : <Loading/>
-            : <ErrorMessage/>
+            : <ErrorMessage/>}
+        </div>
         )
 }
 

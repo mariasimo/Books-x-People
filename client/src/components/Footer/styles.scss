@@ -1,17 +1,34 @@
 @import '../../globalStyles/variables.scss';
 
 footer {
-    margin-top: $m2;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    max-width: 50rem;
+    align-self: flex-end;
+    margin: 0 auto;
+    margin-top: $m3;
+    margin-bottom: $m4;
+
+    @media (min-width: $bp_medium) {
+        margin-left: auto; 
+    }
 
     .small{
-        text-transform: uppercase;
-        color: transparentize($main_color, 0.25);
+        color: transparentize($main_color, 0.45);
         letter-spacing: 0;
+        margin-right: $m4;
+        margin-bottom: $m6;
     }
 
     .social {
+        a{
+            opacity: 0.7;
+            transition: opacity ease-in .3s;
+
+            &:hover{
+                opacity: 1;
+            }
+        }
         a:first-child{
             margin-right: $m5;
         }
