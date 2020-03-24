@@ -4,4 +4,16 @@
     .go-back{
         margin-top: $m3;
     }
+    .comment {
+        margin-bottom: $m3;
+    }
+    .moderation {
+        border-top: 1px dotted $main_color;
+        border-bottom: 1px dotted $main_color;
+        margin-bottom: $m3;
+        padding-bottom: $m5;
+    }
+    .tags-group {
+        margin-bottom: $m4;
+    }
 }

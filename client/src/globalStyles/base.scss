@@ -80,6 +80,10 @@ p, ul {
     font-weight: 100;
 }
 
+.hr {
+    border-top: 1px dotted $main_color;
+}
+
 .b {
     font-weight: 700;
 }

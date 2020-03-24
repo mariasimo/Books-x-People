@@ -15,6 +15,7 @@ import ThankYou from './components/ThankYou';
 import BookDetails from './components/BookDetails'
 import SearchBook from './components/SearchBook';
 import PublishBook from './components/Publisbook';
+import BookConfirmation from './components/BookConfirmation';
 
 function App({location}) {
   const queryTagObject = queryString.parse(location.search);
@@ -36,6 +37,7 @@ function App({location}) {
           <Route path="/libro/:bookId" render={(props) => <BookDetails {...props}/>}/>
           <Route path="/buscar-libro" render={() => <SearchBook handleTagSelection={(tags)=>handleTagSelection(tags)} queryTag={queryTagObject.tag}/>} />
           <Route path="/approved/:bookId" render={(props) => <PublishBook {...props}/>} />
+          <Route path="/confirmacion/:result/:bookId" render={(props) => <BookConfirmation {...props}/>} />
         </Switch>
       </section>
 

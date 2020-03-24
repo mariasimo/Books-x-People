@@ -44,7 +44,7 @@ const BookList = ({selectedTags, queryTag, pathname}) => {
 
     const {loading, error, data} = useQuery(GET_BOOKS);
     let books = data && data.books;
-
+    
     return (
         !error
             ?  !loading 

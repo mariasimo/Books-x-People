@@ -69,9 +69,13 @@ mutation(
 const ADD_TAG=gql`
 mutation(
     $name:String!
+    $moderated: Boolean!,
+    $published: Boolean!,
     ){
     addTag(
         name:$name
+        moderated: $moderated,
+        published: $published
     ){
         id
     }
@@ -91,6 +95,8 @@ const GET_BOOK_DETAILS=gql`
             tags {
                 name
                 id
+                moderated
+                published
             }
         }
     }
@@ -108,11 +114,52 @@ mutation(
 }
 `
 
+const APPROVE_TAG=gql`
+mutation(
+    $id:ID!
+    ){
+    approveTag(
+        id:$id
+    ){
+        id
+    }
+}
+`
+
+
+
+const DELETE_BOOK=gql`
+mutation(
+    $id:ID!
+    ){
+    deleteBook(
+        id:$id
+    ){
+        id
+    }
+}
+`
+
+const DELETE_TAG=gql`
+mutation(
+    $id:ID!
+    ){
+    deleteTag(
+        id:$id
+    ){
+        id
+    }
+}
+`
+
 export {
     GET_BOOKS,
     GET_TAGS,
     ADD_TAG,
     ADD_BOOK,
     GET_BOOK_DETAILS,
-    APPROVE_BOOK
+    APPROVE_BOOK,
+    APPROVE_TAG,
+    DELETE_BOOK,
+    DELETE_TAG,
 }

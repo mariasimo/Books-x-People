@@ -52,7 +52,11 @@ const AddBook = ({history}) => {
     const addNewTags = (tags) => {
         tags.forEach(tag => {
             return addTag({
-                variables: {name:tag.name}
+                variables: {
+                    name:tag.name,
+                    moderated: false,
+                    published: false
+                }
             })
         })
     }

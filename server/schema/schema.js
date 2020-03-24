@@ -61,7 +61,9 @@ const TagType = new GraphQLObjectType({
   name: 'Tag',
   fields: () => ({
     id: { type: GraphQLID },
-    name: { type: GraphQLString }
+    name: { type: GraphQLString },
+    moderated: {type: GraphQLBoolean},
+    published: {type: GraphQLBoolean},
   })
 })
 
@@ -138,10 +140,14 @@ const Mutations = new GraphQLObjectType({
       type: TagType,
       args: {
         name: { type: GraphQLNonNull(GraphQLString) },
+        moderated: {type: GraphQLBoolean},
+        published: {type: GraphQLBoolean}
       },
       resolve(_, args) {
         let tag = new Tag({
-          name:args.name
+          name:args.name,
+          moderated: args.moderated,
+          published: args.published
         });
         return Tag.create(tag)
       } 
@@ -160,8 +166,41 @@ const Mutations = new GraphQLObjectType({
        
         return book;
       }
-    }
+    },
+    approveTag: {
+      type: TagType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) }
+      },
 
+      resolve(_, args){
+        let tag = Tag.findByIdAndUpdate(args.id, {
+          moderated:true,
+          published:true
+        }, {new:true});
+       
+        return tag;
+      }
+    },
+    deleteBook: {
+      type: BookType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, args){
+        return Book.findByIdAndDelete(args.id);
+
+      }
+    },
+    deleteTag: {
+      type: TagType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, args){
+        return Tag.findByIdAndDelete(args.id);
+      }
+    }
   }
 })
 
