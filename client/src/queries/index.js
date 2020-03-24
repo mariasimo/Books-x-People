@@ -63,6 +63,22 @@ mutation(
     }
 }
 `
+
+
+
+const ADD_TAG=gql`
+mutation(
+    $name:String!
+    ){
+    addTag(
+        name:$name
+    ){
+        id
+    }
+}
+`
+
+
 const GET_BOOK_DETAILS=gql`
     query($id:ID){
         book(id:$id){
@@ -95,6 +111,7 @@ mutation(
 export {
     GET_BOOKS,
     GET_TAGS,
+    ADD_TAG,
     ADD_BOOK,
     GET_BOOK_DETAILS,
     APPROVE_BOOK

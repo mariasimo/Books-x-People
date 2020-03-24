@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { ADD_BOOK, GET_BOOKS, GET_TAGS } from '../../queries'
+import { ADD_BOOK, GET_BOOKS, GET_TAGS, ADD_TAG } from '../../queries'
 import './styles.scss'
 import TagList from '../Tags';
 import {shuffle,randomWidth,randomHeight} from '../../utils'
@@ -10,14 +10,18 @@ import axios from 'axios';
 
 const AddBook = ({history}) => {
     const [addBook] = useMutation(ADD_BOOK)
+    const [addTag] = useMutation(ADD_TAG ,{ onCompleted(data) { 
+        setState({...state,  newTags: [...state.newTags, data.addTag.id]})
+    }})
     const {data} = useQuery(GET_TAGS)
-    
+
     const  [state, setState] = useState({
         name: "",
         author: "",
         comment: "",
         recommendedBy: "",
-        tags: []
+        tags: [],
+        newTags: []
     })
    
     useEffect(() => {
@@ -27,15 +31,42 @@ const AddBook = ({history}) => {
         } 
     }, [data]);
 
+    useEffect(() => {
+        if(state.newTags.length) addNewBook(state.tags, state.newTags)
+    }, [state])
+
     const addBookSize = () => ({
         width: randomWidth(),
         height: randomHeight(),
     })
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleNewTag = (e) => {    
+        if (e.key === "Enter") {
+            e.preventDefault()
+            const newTag = {
+                name: e.target.value,
+                isChecked: true
+            }
+            setState({...state, tags: [...state.tags, newTag]})
+        }
+    }
+
+    const addNewTags = (tags) => {
+        tags.forEach(tag => {
+            return addTag({
+                variables: {name:tag.name}
+            })
+        })
+    }
+
+    const addNewBook = (tags, newTags) => {
         const bookSize = addBookSize()
-        const tags = state.tags.filter(tag=>tag.isChecked==true).map(tag => tag.id)
+
+        console.log(tags, newTags)
+        let tagList = tags.filter(tag=> (tag.isChecked===true && tag.id !== undefined)).map(tag => tag.id)
+        tagList.push(...newTags)
+
+        console.log(tagList)
         addBook({
             variables: {
                 author: state.author,
@@ -46,20 +77,26 @@ const AddBook = ({history}) => {
                 published: false,
                 width: bookSize.width,
                 height: bookSize.height,
-                tags: tags
-
+                tags: tagList
             },
             refetchQueries:[{query:GET_BOOKS}]
         }) 
         .then(bookSubmitted => {
+            console.log(bookSubmitted)
             sendMail(bookSubmitted.data.addBook)
             const {id} = bookSubmitted.data.addBook
             history.push(`/gracias/${id}`)
         })
+        .catch(err => console.log(err))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const tagsToAdd = state.tags.filter(tag => tag.id===undefined);
+        addNewTags(tagsToAdd)
     }
 
     const sendMail = mailData => {
-        console.log(mailData)
         return axios.post(`${process.env.REACT_APP_API_URL}/send-mail`, mailData)
     }
 
@@ -84,9 +121,9 @@ const AddBook = ({history}) => {
                 <div className="field">
                     <fieldset>
                         <legend>Este es un libro perfecto para...</legend>
-                        <TagList tags={state.tags}/>
+                        <TagList tags={[...state.tags]}/>
                     </fieldset>
-                    <input type="text" className="create-tag" placeholder="Añade tu propia etiqueta"/>
+                    <input type="text" className="create-tag" placeholder="Añade tu propia etiqueta" onKeyDown={(e) =>handleNewTag(e) && e.preventDefault()}/>
                 </div>
 
                 <div className="field">

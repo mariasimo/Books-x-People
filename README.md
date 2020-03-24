@@ -1,16 +1,16 @@
-#Books x People
+# Books x People
 
 Books x People is a little app where users can **add their book recomendations so others can read and discover** new things, specially during COVID-19 quarantine.
 
-Its quite simple. It has a add book and search book by tags functionality. It also has a detail view for each book, while the main booklist view looks like a bookshelf.
+It's quite simple, really. It has an add book and a search book by tags functionality. It also has a detail view for each book, while the main booklist view looks like a bookshelf.
 
-Initially, i was a code along this GraphQL + React tutorial from @iamshaunjp. So, thanks for the inspiration!
+Initially, this was a code-along of [this GraphQL + React tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f) from @iamshaunjp. So thanks for the inspiration!
 
 
 
 📁 
 
-####Download the project 
+#### Download the project 
 
 ```
 git clone https://github.com/mariasimo/Books-x-People
@@ -20,7 +20,7 @@ git clone https://github.com/mariasimo/Books-x-People
 
 ⚙️ 
 
-####Config the project
+#### Config the project
 
 Project is divided in two main folders. Client and Server.
 
@@ -50,7 +50,7 @@ REACT_APP_URL=http://localhost:3000
 
 🚀
 
-####Run the project
+#### Run the project
 
 First, start the ***\*server\**** with one of these commands:
 
@@ -86,12 +86,24 @@ Ta-da! Go visit http://localhost:3000
 
 
 
-####✌🏽
+✌🏽
 
-####Contributions and feedback
+#### Contributions and feedback
 
-This project  has been made for the purpose of learning. 
+This project is made for the only purpose of learning. 
 
 As next implementations, I intend to add animated transitions to pages, add redux, new features with tags and unit testing.
 
 Please feel free to use this repo for your own evil plans. Any comments, feedback or contributions will be very much appreciated 
+
+🛎
+
+#### Changelog
+
+- [x] Allow user to add new tags to list at AddBook.js
+
+- [ ] Being able of moderate new tags via nodemailer
+
+- [ ] Refetch Query at ApproveBook to render conditionally a message
+
+  
