@@ -45,7 +45,6 @@ function App({location}) {
       <section className={`section_1-2 section-fixed ${location.pathname!=='/' ? 'header-layout' : ""}` }>   
         <BookList selectedTags={selectedTags} queryTag={queryTagObject.tag} {...location}/>    
         <Footer/>
-
       </section>
     </main>
   );

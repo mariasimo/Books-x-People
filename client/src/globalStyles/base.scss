@@ -33,9 +33,14 @@ main {
     }
 
     .section-fixed {
+        overflow: hidden;
+
+        @media(min-width:$bp_small){
+            overflow: visible;
+        }
+        
         @media(min-width: $bp_large){
             height: 100vh;
-            overflow: visible;
             overflow-y: scroll;        
         }
     }
@@ -53,6 +58,7 @@ main {
             width: 100%;
             padding: $m4 $m5;
             max-width: 48rem;
+            overflow-x: hidden;
                         
             @media(min-width: $bp_small){
                 margin-left: 3rem;
@@ -98,10 +104,16 @@ p, ul {
     font-weight: 700;
     line-height: $lh-heading;
     margin: $m4 0;
+    hyphens: auto;
+    word-break: break-word;
 }
 
 .t1 {
-    font-size: $f1;
+    font-size: $f1*.75;
+
+    @media (min-width:$bp_x-small){
+        font-size: $f1;
+    }
 }
 .t2{
     font-size: $f2;

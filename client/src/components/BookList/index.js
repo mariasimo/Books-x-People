@@ -13,7 +13,7 @@ import {useQuery} from '@apollo/react-hooks';
 import { GET_BOOKS } from '../../queries' 
 
 const BookItem = ({name, width, author, height, id, getSelected, pickedBook, tags, selectedTags, queryTag}) => {  
-    const factor = (name.length > 25 || author.length > 25) ? .6 : .8;
+    const factor = (name.length > 25 || author.length > 25) ? .6 : .75;
     const fontSize = width.replace('em', '')* factor + 'em';
 
     const isSelectedByTag = tags => {

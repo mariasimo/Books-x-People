@@ -120,4 +120,12 @@ Please feel free to use this repo for your own evil plans. Any comments, feedbac
 
 - [ ] Make user choose 2 or 3 tags at least
 
+- [ ] Fix css buttons to make them look vertically align
+
+- [ ] Get with of book by number of pages
+
+- [x] Fixed long titles on mobile
+
+- [x] Fixed positioning conflict with mobile keyboard when adding books
+
   
