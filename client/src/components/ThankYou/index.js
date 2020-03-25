@@ -6,7 +6,7 @@ import SocialSharing from '../SocialSharing';
 const ThankYou = () => {
     return (
         <div className="thank-you container page">
-            <div className="content">
+            <div className="content w-padding">
                 <h1 className="title t3">Gracias por tu contribución</h1>
                 <p>En Books X People queremos que compartir sea un acto de generosidad, respeto, empatía y comunicación.</p>
                 <p>Tenemos que moderar tu participación para asegurarnos de que cumple las normas de la comunidad.</p>

@@ -107,7 +107,7 @@ const AddBook = ({history}) => {
 
     return (
         <div className="add-book page">
-            <form id="add-book" className="content" onSubmit={(e) => handleSubmit(e)}>
+            <form id="add-book" className="content w-padding" onSubmit={(e) => handleSubmit(e)}>
                 <div className="field">
                     <label>Tu nombre:</label>
                     <input type="text" required onChange={(e) => setState({...state, recommendedBy:e.target.value})}/>

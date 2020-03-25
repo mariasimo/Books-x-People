@@ -56,13 +56,18 @@ main {
 
         .content {
             width: 100%;
-            padding: $m4 $m5;
+            padding: 0;
             max-width: 48rem;
             overflow-x: hidden;
-                        
+                  
+            &.w-padding {
+                padding: $m4 $m5;
+            }
+
             @media(min-width: $bp_small){
                 margin-left: 3rem;
                 padding: $m4;
+    
             }
         }
     }
